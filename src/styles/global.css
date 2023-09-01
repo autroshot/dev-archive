@@ -25,7 +25,7 @@ body {
   word-wrap: break-word;
   overflow-wrap: break-word;
   color: rgb(var(--gray-dark));
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.7;
 }
 main {
@@ -68,12 +68,6 @@ a {
 }
 a:hover {
   color: var(--accent);
-}
-p {
-  margin-bottom: 1em;
-}
-.prose p {
-  margin-bottom: 2em;
 }
 textarea {
   width: 100%;
