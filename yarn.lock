@@ -546,6 +546,11 @@
     hastscript "^7.2.0"
     unist-util-visit-parents "^5.1.3"
 
+"@fontsource/nanum-gothic@^5.0.10":
+  version "5.0.10"
+  resolved "https://registry.yarnpkg.com/@fontsource/nanum-gothic/-/nanum-gothic-5.0.10.tgz#71c701bb65496e26fb6c0ce7d294aac37d46e214"
+  integrity sha512-piSuxXHp3EtIT9OnaDBjB/4rHSEb0mJfW0l0uAYML1pAatXZNxR4bvoqv5DSgLc7iXbNOafpBS1hKCp9TV0umg==
+
 "@jridgewell/gen-mapping@^0.3.0", "@jridgewell/gen-mapping@^0.3.2":
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@jridgewell/gen-mapping/-/gen-mapping-0.3.3.tgz#7e02e6eb5df901aaedb08514203b096614024098"
