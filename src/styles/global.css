@@ -84,24 +84,6 @@ img {
   height: auto;
   border-radius: 8px;
 }
-code {
-  padding: 2px 5px;
-  background-color: rgb(var(--gray-light));
-  border-radius: 2px;
-}
-pre {
-  padding: 1.5em;
-  border-radius: 8px;
-}
-pre > code {
-  all: unset;
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-    'Courier New', monospace;
-}
-code {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-    'Courier New', monospace;
-}
 blockquote {
   border-left: 4px solid var(--accent);
   padding: 0 0 0 20px;
