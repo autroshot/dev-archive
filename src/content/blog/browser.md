@@ -37,7 +37,7 @@ heroImage: '/blog-placeholder-5.jpg'
 
 DNS 룩업은 일반적으로 페이지 로드를 위해 호스트 이름당 한 번만 수행하면 됩니다. 그러나 요청된 페이지가 참조하는 각 고유 호스트 이름에 대해 DNS 룩업을 수행해야 합니다. 글꼴, 이미지, 스크립트, 광고, 메트릭의 호스트 이름이 모두 다른 경우 각 호스트에 대해 DNS 룩업을 수행해야 합니다.
 
-![모바일 요청은 먼저 기지국으로 전송된 후 인터넷으로 전송되기 전에 중앙 전화 회사 컴퓨터로 전송됨](https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work/latency.jpg)
+![모바일 요청은 먼저 기지국으로 전송된 후 인터넷으로 전송되기 전에 중앙 전화 회사 컴퓨터로 전송됨](@assets/browser/latency.jpg)
 
 이는 특히 모바일 네트워크에서 성능에 문제가 될 수 있습니다. 사용자가 모바일 네트워크에 있을 때 각 DNS 룩업은 권한 있는 DNS 서버에 도달하기 위해 전화기에서 기지국으로 이동해야 합니다. 전화기, 기지국, 이름 서버 사이의 거리는 상당한 지연 시간을 추가할 수 있습니다.
 
@@ -51,7 +51,7 @@ TCP의 3방향 핸드셰이킹 기술은 종종 'SYN-SYN-ACK', 보다 정확하�
 
 HTTPS를 통해 보안 연결을 설정하려면 또 다른 '핸드셰이크'가 필요합니다. 이 핸드셰이크 또는 [TLS](https://developer.mozilla.org/ko/docs/Glossary/TLS) 협상은 통신을 암호화하는 데 사용할 암호를 결정하고, 서버를 확인하고, 실제 데이터 전송을 시작하기 전에 보안 연결이 있는지 확인합니다. 이렇게 하려면 콘텐츠 요청이 실제로 전송되기 전에 서버로 세 번 더 왕복해야 합니다.
 
-![DNS 조회, TCP 핸드셰이크, TLS 핸드셰이크의 5단계(클라이언트 헬로, 서버 헬로 및 인증서, 클라이언트 키 포함) 및 서버와 클라이언트 모두에 대한 완료](https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work/ssl.jpg)
+![DNS 조회, TCP 핸드셰이크, TLS 핸드셰이크의 5단계(클라이언트 헬로, 서버 헬로 및 인증서, 클라이언트 키 포함) 및 서버와 클라이언트 모두에 대한 완료](@assets/browser/ssl.jpg)
 
 보안 연결을 설정하면 페이지 로드에 시간이 더 걸리지만, 브라우저와 웹 서버 간에 전송되는 데이터를 제3자가 해독할 수 없게 되므로 지연 시간 비용을 감수할 가치가 있습니다.
 
@@ -113,7 +113,7 @@ DOM은 브라우저 마크업의 내부 표현입니다. DOM은 노출되어 있
 
 DOM 트리는 문서의 콘텐츠를 설명합니다. [`<html>`](https://developer.mozilla.org/ko/docs/Web/HTML/Element/html) 요소는 문서 트리의 첫 번째 태그이자 루트 노드입니다. 트리는 서로 다른 태그 간의 관계 및 계층을 반영합니다. 다른 태그 내에 중첩된 태그는 하위 노드입니다. DOM 노드의 수가 많을수록 DOM 트리를 구성하는 데 시간이 더 오래 걸립니다.
 
-![텍스트 노드를 포함한 모든 노드를 보여주는 샘플 코드의 DOM 트리](https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work/dom.gif)
+![텍스트 노드를 포함한 모든 노드를 보여주는 샘플 코드의 DOM 트리](@assets/browser/dom.gif)
 
 파서가 이미지와 같은 차단되지 않는 자원을 찾으면 브라우저는 해당 자원을 요청하고 파싱을 계속합니다. 파싱은 CSS 파일을 만나도 계속됩니다. 하지만 `<script>` 태그(특히 [`async`](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/async_function) 또는 `defer` 속성이 없는 태그)는 렌더링을 차단하고 HTML 파싱을 일시 중지시킵니다. 브라우저의 프리로드 스캐너가 이 프로세스를 가속화하지만 과도한 스크립트는 여전히 심각한 병목 현상이 될 수 있습니다.
 
@@ -210,6 +210,6 @@ AOM이 구축되기 전까지는 [스크린 리더](https://developer.mozilla.or
 
 위의 예시에서는 이미지가 빠르게 로드될 수 있지만 `anotherscript.js` 파일이 2MB이고 사용자의 네트워크 연결 속도가 느릴 수 있습니다. 이 경우 사용자는 페이지를 매우 빠르게 볼 수 있지만, 스크립트를 다운로드하고 파싱하여 실행할 때까지 스크롤이 버벅거릴 것입니다. 이는 좋은 사용자 경험이 아닙니다. 다음 웹 페이지 테스트 예시처럼 메인 스레드를 점유하는 것을 피해야 합니다.
 
-![메인 스레드가 빠른 연결을 통해 자바스크립트 파일의 다운로드, 파싱, 실행에 점유됨](https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work/visa_network.png)
+![메인 스레드가 빠른 연결을 통해 자바스크립트 파일의 다운로드, 파싱, 실행에 점유됨](@assets/browser/visa-network.png)
 
 이 예시에서 DOM 콘텐츠 로드 프로세스는 1.5초 이상 걸렸고, 메인 스레드는 전체 시간 동안 완전히 점유되어 클릭 이벤트나 화면 탭에 응답하지 않았습니다.
