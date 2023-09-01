@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 
 import sitemap from '@astrojs/sitemap';
 import astroExpressiveCode, { pluginFramesTexts } from 'astro-expressive-code';
+import rehypeExternalLinks from 'rehype-external-links';
 
 pluginFramesTexts.addLocale('ko', {
   copyButtonCopied: '복사됨!',
@@ -24,4 +25,15 @@ const astroExpressiveCodeOptions = {
 export default defineConfig({
   site: 'https://example.com',
   integrations: [sitemap(), astroExpressiveCode(astroExpressiveCodeOptions)],
+  markdown: {
+    rehypePlugins: [
+      [
+        rehypeExternalLinks,
+        {
+          target: '_blank',
+          rel: ['noopener', 'noreferrer'],
+        },
+      ],
+    ],
+  },
 });
