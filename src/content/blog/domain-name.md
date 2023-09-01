@@ -1,0 +1,136 @@
+---
+title: '도메인 이름'
+description: '도메인 이름은 인터넷 인프라의 핵심입니다. 도메인 이름은 인터넷에서 사용할 수 있는 모든 웹 서버에 사람이 읽을 수 있는 주소를 제공합니다.'
+publishedDate: '2023-09-01'
+heroImage: '/blog-placeholder-5.jpg'
+---
+
+# 도메인 이름
+
+> 원문 - [MDN - What is a Domain Name?](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_domain_name)
+
+## 요약
+
+인터넷에 연결된 모든 컴퓨터는 공용 IP 주소인 IPv4 주소(예: `173.194.121.32`) 또는 IPv6 주소(예: `2027:0da8:8b73:0000:0000:8a2e:0370:1337`)를 통해 연결될 수 있습니다.
+
+컴퓨터는 이런 IP 주소를 쉽게 처리할 수 있습니다. 하지만 사람들은 누가 서버를 실행하고 있는지, 웹 사이트에서 제공하는 서비스가 무엇인지를 알아내는 데 어려움을 겪습니다. IP 주소는 기억하기 어려우며 시간이 지나면 변경될 수 있습니다.
+
+이러한 모든 문제를 해결하기 위해 우리는 도메인 이름이라는 사람이 읽을 수 있는 주소를 사용합니다.
+
+## 자세히 알아보기
+
+### 도메인 이름의 구조
+
+도메인 이름은 여러 부분으로 구성된 단순한 구조를 가지고 있습니다. 이는 점으로 구분되며 **오른쪽에서 왼쪽으로** 읽습니다.
+
+![MDN 도메인 이름의 구조](@assets/domain-name/structure.png)
+
+각 부분은 전체 도메인 이름에 대한 특정 정보를 제공합니다.
+
+#### TLD
+
+TLD(Top-Level Domain), 최상위 도메인은 사용자에게 도메인 이름 뒤에 있는 서비스의 일반적인 목적을 알려줍니다.
+
+가장 일반적인 TLD(`.com`, `.org`, `.net`)는 특정 기준을 충족하는 웹 서비스를 요구하지 않지만 일부 TLD는 엄격한 정책을 시행하므로 목적이 무엇인지 명확합니다.
+
+예시:
+
+- `.us`, `.fr`, `.se` 같은 로컬 TLD는 특정 언어로 제공되거나 특정 국가에서 호스팅되는 서비스를 요구할 수 있습니다.
+- `.gov`가 포함된 TLD는 정부 부처에서만 사용할 수 있습니다.
+- `.edu` TLD는 교육 및 학술 기관에서만 사용할 수 있습니다.
+
+TLD에는 특수 문자와 라틴 문자가 포함될 수 있습니다. TLD의 최대 길이는 63자이지만 대부분은 2-3자 정도입니다. TLD의 전체 목록은 [ICANN](https://www.icann.org/resources/pages/tlds-2012-02-25-en)에 의해 관리됩니다.
+
+#### 레이블
+
+레이블은 TLD를 따릅니다. 레이블은 대소문자를 구분하지 않는 1자에서 63자 사이의 문자 시퀀스입니다. 레이블에는 A에서 Z까지의 문자, 0에서 9까지의 숫자, - 문자(레이블의 첫 번째 또는 마지막 문자가 아닐 수 있음)만 사용할 수 있습니다. `a`, `97`, `hello-strange-person-16-how-are-you`는 모두 유효한 레이블의 예입니다.
+
+TLD 바로 앞에 있는 레이블을 **2단계 도메인(Secondary Level Domain, SLD)**이라고도 부릅니다.
+
+도메인 이름에는 많은 레이블(또는 구성 요소)이 존재할 수 있습니다. 도메인 이름에 반드시 3개의 레이블이 있어야 하는 것은 아닙니다. 예를 들어 [www.inf.ed.ac.uk](http://www.inf.ed.ac.uk/)는 유효한 도메인 이름입니다. 직접 제어하는 도메인(예: [mozilla.org](https://www.mozilla.org/en-US/))에 대해 [developer.mozilla.org](https://developer.mozilla.org/), [iot.mozilla.org](https://iot.mozilla.org/), [bugzilla.mozilla.org](https://bugzilla.mozilla.org/)와 같이 다른 컨텐츠로 하위 도메인을 만들 수 있습니다.
+
+### 도메인 이름 구입하기
+
+#### 누가 도메인 이름을 소유하나요?
+
+도메인 이름은 **구입할 수 없습니다**. 이렇게 해야 사용하지 않는 도메인 이름을 다른 사람이 다시 사용할 수 있게 됩니다. 만약 모든 도메인 이름을 구입할 수 있다면 웹은 아무도 사용할 수 없는 미사용 도메인 이름으로 빠르게 채워지고 결국은 잠기게 될 것입니다.
+
+대신 1년 이상 도메인 이름을 사용할 수 있는 권리에 대해 비용을 지불합니다. 이 권리는 갱신할 수 있으며, 갱신은 다른 사람의 신청보다 우선합니다. 그러나 도메인 이름을 소유할 수는 없습니다.
+
+**등록 대행자(registrar)**라는 회사는 도메인 이름 레지스트리를 사용하여 사용자를 도메인 이름에 연결하는 기술 및 관리 정보를 추적합니다.
+
+> 일부 도메인 이름은 등록 대행자가 관리하지 않습니다. 예를 들어 `.fire` 아래의 모든 도메인 이름은 아마존에서 관리합니다.
+
+#### 사용 가능한 도메인 이름 찾기
+
+다음 절차를 통해 어떤 도메인 이름이 사용 가능한지 확인할 수 있습니다.
+
+- 도메인 이름 등록 대행자의 웹사이트로 이동합니다. 대부분의 등록 대행자는 특정 도메인 이름의 사용 가능 여부를 알려주는 **whois** 서비스를 제공합니다.
+
+- 또는 내장 셸이 있는 시스템을 사용한다면 `whois` 명령어를 사용할 수 있습니다. 다음은 `mozilla.org`를 사용한 예시입니다.
+
+  ```shell
+  $ whois mozilla.org
+  Domain Name:MOZILLA.ORG
+  Domain ID: D1409563-LROR
+  Creation Date: 1998-01-24T05:00:00Z
+  Updated Date: 2013-12-08T01:16:57Z
+  Registry Expiry Date: 2015-01-23T05:00:00Z
+  Sponsoring Registrar:MarkMonitor Inc. (R37-LROR)
+  Sponsoring Registrar IANA ID: 292
+  WHOIS Server:
+  Referral URL:
+  Domain Status: clientDeleteProhibited
+  Domain Status: clientTransferProhibited
+  Domain Status: clientUpdateProhibited
+  Registrant ID:mmr-33684
+  Registrant Name:DNS Admin
+  Registrant Organization:Mozilla Foundation
+  Registrant Street: 650 Castro St Ste 300
+  Registrant City:Mountain View
+  Registrant State/Province:CA
+  Registrant Postal Code:94041
+  Registrant Country:US
+  Registrant Phone:+1.6509030800
+  ```
+
+  `mozilla.org`는 모질라 재단이 이미 등록했으므로 해당 도메인 이름은 등록할 수 없습니다.
+
+  이제 `afunkydomainname.org`를 등록할 수 있는지 확인해 보겠습니다.
+
+  ```shell
+  $ whois afunkydomainname.org
+  NOT FOUND
+  ```
+
+  `whois` 데이터베이스에 (작성 당시에는) 해당 도메인이 존재하지 않기 때문에 등록을 요청할 수 있습니다. 반가운 소식이네요!
+
+#### 도메인 이름 얻기
+
+과정은 매우 간단합니다.
+
+1. 등록 대행자의 웹사이트로 이동합니다.
+2. 보통 눈에 띄는 '도메인 이름 얻기' 요청이 있습니다. 클릭하세요.
+3. 필요한 모든 세부사항을 양식에 작성하세요. 원하는 도메인 이름을 잘못 입력하지 않았는지 확인하세요. 결제 후에는 늦습니다!
+4. 등록 대행자는 도메인 이름이 올바르게 등록되면 알려줄 것입니다. 몇 시간 내에 모든 DNS 서버가 해당 DNS 정보를 받게 됩니다.
+
+> 이 과정에서 등록 대행자는 신청자의 실제 주소를 묻습니다. 일부 국가에서는 주소가 유효하지 않다면 등록 대행자가 도메인을 폐쇄해야 할 수 있으므로 주소를 올바르게 입력했는지 확인하세요.
+
+#### DNS 새로 고침
+
+DNS 데이터베이스는 전 세계의 모든 DNS 서버에 저장됩니다. 모든 DNS 서버는 권한 있는 이름 서버(authoritative name servers) 또는 최상위 DNS 서버(top-level DNS servers)라고 하는 몇 가지 특수 서버를 참조합니다. 이는 시스템을 관리하는 보스 서버로 볼 수 있습니다.
+
+등록 대행자가 특정 도메인에 대한 정보를 만들거나 갱신할 때마다 모든 DNS 데이터베이스에서 정보를 새로 고쳐야 합니다. 해당 도메인에 대해 알고 있는 각 DNS 서버는 자동으로 무효화되고 새로 고치기(DNS 서버는 권한 있는 서버에 질의하고 갱신된 정보를 가져옴) 전에 정보를 저장합니다. 따라서 이 도메인 이름을 알고 있는 DNS 서버가 최신 정보를 가져오려면 시간이 좀 걸립니다.
+
+### DNS 요청은 어떻게 작동하나요?
+
+이미 살펴본 것처럼 브라우저에 웹 페이지를 표시하려면 IP 주소보다 도메인 이름을 입력하는 것이 더 쉽습니다.
+
+DNS 요청 과정은 다음과 같습니다.
+
+1. 브라우저 주소창에 `mozilla.org`를 입력합니다.
+2. 브라우저는 (로컬 DNS 캐시를 사용하여) 해당 도메인 이름으로 식별된 IP 주소를 이미 인식하고 있는지 컴퓨터에 묻습니다. 그렇다면 이름은 IP 주소로 변환되고 브라우저는 웹 서버와 콘텐츠를 협상합니다. 끝.
+3. 컴퓨터가 `mozilla.org` 이름 뒤에 어떤 IP가 있는지 모른다면, DNS 서버에 문의하여 컴퓨터에 등록된 각 도메인 이름과 일치하는 IP 주소를 정확하게 알려줍니다.
+4. 이제 컴퓨터가 요청된 IP 주소를 알고 있으므로 브라우저가 웹 서버와 콘텐츠를 협상할 수 있습니다.
+
+![DNS 요청에 대한 결과를 얻는 데 필요한 단계에 대한 설명](@assets/domain-name/dns-request.png)
