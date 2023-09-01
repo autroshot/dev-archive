@@ -14,6 +14,8 @@ const astroExpressiveCodeOptions = {
   styleOverrides: {
     codeFontSize: '16px',
     codeLineHeight: '1.5em',
+    codeFontFamily: `SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace`,
   },
   defaultLocale: 'ko',
 };
