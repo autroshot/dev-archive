@@ -40,9 +40,11 @@ b {
 }
 a {
   color: var(--accent);
+  text-underline-position: under;
 }
 a:hover {
   color: var(--accent);
+  opacity: 0.8;
 }
 textarea {
   width: 100%;
