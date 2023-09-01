@@ -95,6 +95,12 @@ pre {
 }
 pre > code {
   all: unset;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+}
+code {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
 }
 blockquote {
   border-left: 4px solid var(--accent);
