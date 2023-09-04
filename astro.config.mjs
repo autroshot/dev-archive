@@ -1,7 +1,7 @@
-import { defineConfig } from 'astro/config';
-
 import sitemap from '@astrojs/sitemap';
+import tailwind from '@astrojs/tailwind';
 import astroExpressiveCode, { pluginFramesTexts } from 'astro-expressive-code';
+import { defineConfig } from 'astro/config';
 import rehypeExternalLinks from 'rehype-external-links';
 
 pluginFramesTexts.addLocale('ko', {
@@ -24,7 +24,11 @@ const astroExpressiveCodeOptions = {
 // https://astro.build/config
 export default defineConfig({
   site: 'https://example.com',
-  integrations: [sitemap(), astroExpressiveCode(astroExpressiveCodeOptions)],
+  integrations: [
+    sitemap(),
+    astroExpressiveCode(astroExpressiveCodeOptions),
+    tailwind(),
+  ],
   markdown: {
     rehypePlugins: [
       [
