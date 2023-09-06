@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       typography: {
-        lg: {
+        DEFAULT: {
           css: {
             fontSize: '17px',
           },
