@@ -14,34 +14,6 @@ const { title, description, publishedDate, updatedDate, heroImage } =
 <html lang="ko">
   <head>
     <BaseHead title={title} description={description} />
-    <style>
-      .hero-image {
-        width: 100%;
-      }
-      .hero-image img {
-        display: block;
-        margin: 0 auto;
-        border-radius: 12px;
-        box-shadow: var(--box-shadow);
-      }
-      .title {
-        margin-bottom: 1em;
-        padding: 1em 0;
-        text-align: center;
-        line-height: 1;
-      }
-      .title h1 {
-        font-size: 3.052em;
-        margin: 0 0 0.5em 0;
-      }
-      .date {
-        margin-bottom: 0.5em;
-        color: rgb(var(--gray));
-      }
-      .last-updated-on {
-        font-style: italic;
-      }
-    </style>
   </head>
 
   <body>
@@ -55,23 +27,21 @@ const { title, description, publishedDate, updatedDate, heroImage } =
             )
           }
         </div>
-        <div>
-          <div class="title">
-            <h1>{title}</h1>
-            <div class="date">
-              <FormattedDate date={publishedDate} />
-              {
-                updatedDate && (
-                  <div class="last-updated-on">
-                    Last updated on <FormattedDate date={updatedDate} />
-                  </div>
-                )
-              }
-            </div>
-            <hr />
+        <div class="not-prose text-center mb-10">
+          <h1 class="text-5xl font-bold mb-4">{title}</h1>
+          <div class="mb-2 text-gray-500">
+            <FormattedDate date={publishedDate} />
+            {
+              updatedDate && (
+                <div class="italic">
+                  Last updated on <FormattedDate date={updatedDate} />
+                </div>
+              )
+            }
           </div>
-          <slot />
+          <hr />
         </div>
+        <slot />
       </article>
     </main>
     <Footer />
