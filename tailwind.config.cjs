@@ -3,11 +3,18 @@ module.exports = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
-      typography: {
+      typography: (theme) => ({
         DEFAULT: {
           css: {
+            'ol > li::marker': {
+              color: theme('colors.gray.700'),
+            },
+            'ul > li::marker': {
+              color: theme('colors.gray.500'),
+            },
             blockquote: {
               fontStyle: 'normal',
+              borderLeftColor: theme('colors.gray.400'),
             },
             'blockquote p:first-of-type::before': {
               content: '',
@@ -44,7 +51,7 @@ module.exports = {
             },
           },
         },
-      },
+      }),
     },
   },
   plugins: [require('@tailwindcss/typography')],
