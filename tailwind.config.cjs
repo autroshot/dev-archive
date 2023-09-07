@@ -22,11 +22,18 @@ module.exports = {
             'blockquote p:last-of-type::after': {
               content: '',
             },
+            img: {
+              margin: '0 auto',
+              borderRadius: '8px',
+            },
             code: {
               fontFamily:
                 "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
               color: 'inherit',
               fontWeight: 'inherit',
+              backgroundColor: theme('colors.gray.200'),
+              padding: '2px 5px',
+              borderRadius: '3px',
             },
             'code::before': {
               content: '',
