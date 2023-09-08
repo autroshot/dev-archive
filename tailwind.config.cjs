@@ -6,6 +6,12 @@ module.exports = {
       typography: (theme) => ({
         DEFAULT: {
           css: {
+            a: {
+              textDecoration: 'underline',
+              textUnderlinePosition: 'under',
+              color: theme('colors.cyan.700'),
+            },
+            'a:hover': { textDecoration: 'initial' },
             'ol > li::marker': {
               color: theme('colors.gray.700'),
             },

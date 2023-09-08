@@ -33,18 +33,6 @@ main {
   margin: auto;
   padding: 3em 1em;
 }
-strong,
-b {
-  font-weight: 700;
-}
-a {
-  color: var(--accent);
-  text-underline-position: under;
-}
-a:hover {
-  color: var(--accent);
-  opacity: 0.8;
-}
 @media (max-width: 720px) {
   body {
     font-size: 14px;
