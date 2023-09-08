@@ -25,21 +25,6 @@ body {
   word-wrap: break-word;
   overflow-wrap: break-word;
   color: rgb(var(--gray-dark));
-  font-size: 17px;
-  line-height: 1.7;
-}
-main {
-  width: 960px;
-  margin: auto;
-  padding: 3em 1em;
-}
-@media (max-width: 720px) {
-  body {
-    font-size: 14px;
-  }
-  main {
-    padding: 1em;
-  }
 }
 
 .sr-only {
