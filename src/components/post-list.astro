@@ -1,0 +1,76 @@
+---
+import { getCollection } from "astro:content";
+import FormattedDate from "./FormattedDate.astro";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf(),
+);
+
+type Props = Record<string, never>;
+---
+
+<style>
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  ul li {
+    width: calc(50% - 1rem);
+  }
+  ul li * {
+    text-decoration: none;
+    transition: 0.2s ease;
+  }
+  ul li:first-child {
+    width: 100%;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  ul li:first-child img {
+    width: 100%;
+  }
+  ul li img {
+    margin-bottom: 0.5rem;
+    border-radius: 12px;
+  }
+  ul li a {
+    display: block;
+  }
+  ul a:hover img {
+    box-shadow: var(--box-shadow);
+  }
+  @media (max-width: 720px) {
+    ul {
+      gap: 0.5em;
+    }
+    ul li {
+      width: 100%;
+      text-align: center;
+    }
+    ul li:first-child {
+      margin-bottom: 0;
+    }
+  }
+</style>
+
+<ul>
+  {
+    posts.map((post) => (
+      <li class="group">
+        <a href={`/blog/${post.slug}/`}>
+          <img width={720} height={360} src={post.data.heroImage} alt="" />
+          <h4 class="font-bold group-first:text-4xl group-hover:text-cyan-600">
+            {post.data.title}
+          </h4>
+          <p class="text-gray-500 group-hover:text-cyan-600">
+            <FormattedDate date={post.data.publishedDate} />
+          </p>
+        </a>
+      </li>
+    ))
+  }
+</ul>
