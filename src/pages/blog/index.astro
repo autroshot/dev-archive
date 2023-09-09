@@ -16,9 +16,6 @@ const posts = (await getCollection("blog")).sort(
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <style>
-      main {
-        width: 960px;
-      }
       ul {
         display: flex;
         flex-wrap: wrap;
@@ -42,28 +39,12 @@ const posts = (await getCollection("blog")).sort(
       ul li:first-child img {
         width: 100%;
       }
-      ul li:first-child .title {
-        font-size: 2.369rem;
-      }
       ul li img {
         margin-bottom: 0.5rem;
         border-radius: 12px;
       }
       ul li a {
         display: block;
-      }
-      .title {
-        margin: 0;
-        color: rgb(var(--black));
-        line-height: 1;
-      }
-      .date {
-        margin: 0;
-        color: rgb(var(--gray));
-      }
-      ul li a:hover h4,
-      ul li a:hover .date {
-        color: rgb(var(--accent));
       }
       ul a:hover img {
         box-shadow: var(--box-shadow);
@@ -79,9 +60,6 @@ const posts = (await getCollection("blog")).sort(
         ul li:first-child {
           margin-bottom: 0;
         }
-        ul li:first-child .title {
-          font-size: 1.563em;
-        }
       }
     </style>
   </head>
@@ -94,7 +72,7 @@ const posts = (await getCollection("blog")).sort(
         <ul>
           {
             posts.map((post) => (
-              <li>
+              <li class="group">
                 <a href={`/blog/${post.slug}/`}>
                   <img
                     width={720}
@@ -102,8 +80,10 @@ const posts = (await getCollection("blog")).sort(
                     src={post.data.heroImage}
                     alt=""
                   />
-                  <h4 class="title">{post.data.title}</h4>
-                  <p class="date">
+                  <h4 class="font-bold group-first:text-4xl group-hover:text-cyan-600">
+                    {post.data.title}
+                  </h4>
+                  <p class="text-gray-500 group-hover:text-cyan-600">
                     <FormattedDate date={post.data.publishedDate} />
                   </p>
                 </a>
