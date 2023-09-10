@@ -12,9 +12,16 @@
   "dependencies": {
     "@astrojs/rss": "^3.0.0",
     "@astrojs/sitemap": "^3.0.0",
+    "@astrojs/tailwind": "^5.0.0",
     "@fontsource/nanum-gothic": "^5.0.10",
+    "@tailwindcss/typography": "^0.5.10",
     "astro": "^3.0.0",
     "astro-expressive-code": "^0.22.2",
-    "rehype-external-links": "^2.1.0"
+    "rehype-external-links": "^2.1.0",
+    "tailwindcss": "^3.0.24"
+  },
+  "devDependencies": {
+    "prettier-plugin-astro": "^0.12.0",
+    "prettier-plugin-tailwindcss": "^0.5.4"
   }
 }
