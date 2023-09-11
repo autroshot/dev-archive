@@ -1,8 +1,7 @@
 ---
-title: '브라우저의 작동 방식'
-description: '사용자는 콘텐츠가 빠르게 로딩되고 상호 작용이 부드러운 웹 경험을 원합니다. 개발자는 이 두 가지 목표를 달성하기 위해 노력해야 합니다.'
-publishedDate: '2023-08-31'
-heroImage: '/blog-placeholder-5.jpg'
+title: "브라우저의 작동 방식"
+description: "사용자는 콘텐츠가 빠르게 로딩되고 상호 작용이 부드러운 웹 경험을 원합니다. 개발자는 이 두 가지 목표를 달성하기 위해 노력해야 합니다."
+publishedDate: "2023-08-31"
 ---
 
 > 원문 - [MDN - Populating the page: how browsers work](https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work)
@@ -62,7 +61,7 @@ HTTPS를 통해 보안 연결을 설정하려면 또 다른 '핸드셰이크'가
 웹 서버에 대한 연결이 설정되면 브라우저는 사용자를 대신하여 초기 [HTTP `GET` 요청](https://developer.mozilla.org/ko/docs/Web/HTTP/Methods)을 보냅니다. 웹 사이트의 경우 이는 대부분 HTML 파일입니다. 서버가 요청을 받으면 관련 응답 헤더와 HTML 콘텐츠로 응답합니다.
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-US">
   <head>
     <meta charset="UTF-8" />
