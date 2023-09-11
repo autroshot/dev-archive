@@ -4,8 +4,6 @@ description: "도메인 이름은 인터넷 인프라의 핵심입니다. 도메
 publishedDate: "2023-09-01"
 ---
 
-# 도메인 이름
-
 > 원문 - [MDN - What is a Domain Name?](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_domain_name)
 
 ## 요약
