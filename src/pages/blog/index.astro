@@ -1,11 +1,11 @@
 ---
 import PostList from "@components/post-list.astro";
-import Base from "@layouts/base.astro";
+import BaseLayout from "@layouts/base/index.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
 ---
 
-<Base title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <section>
     <PostList />
   </section>
-</Base>
+</BaseLayout>
