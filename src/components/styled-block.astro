@@ -11,7 +11,7 @@ const { title } = Astro.props;
     <slot name="icon" />
     <span class="font-bold ml-1.5">{title}</span>
   </div>
-  <div class="first:prose-p:mt-1 last:prose-p:mb-1">
+  <div class="mt-1 first:prose-p:mt-0 last:prose-p:mb-0">
     <slot name="content" />
   </div>
 </div>
