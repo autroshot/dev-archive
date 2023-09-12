@@ -11,6 +11,12 @@ const blog = defineCollection({
       .string()
       .optional()
       .transform((str) => (str ? new Date(str) : undefined)),
+    source: z
+      .object({
+        name: z.string(),
+        url: z.string(),
+      })
+      .optional(),
   }),
 });
 

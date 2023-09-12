@@ -1,11 +1,12 @@
 ---
+import Source from "@components/source.astro";
 import type { CollectionEntry } from "astro:content";
 import FormattedDate from "../components/formatted-date.astro";
 import Base from "./base.astro";
 
 type Props = CollectionEntry<"blog">["data"];
 
-const { title, description, publishedDate, updatedDate } = Astro.props;
+const { title, description, publishedDate, updatedDate, source } = Astro.props;
 ---
 
 <Base title={title} description={description}>
@@ -24,6 +25,7 @@ const { title, description, publishedDate, updatedDate } = Astro.props;
       </div>
       <hr />
     </div>
+    {source ? <Source name={source.name} url={source.url} /> : null}
     <p>{description}</p>
     <slot />
   </article>
