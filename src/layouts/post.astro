@@ -2,14 +2,14 @@
 import Source from "@components/source.astro";
 import type { CollectionEntry } from "astro:content";
 import FormattedDate from "../components/formatted-date.astro";
-import Base from "./base.astro";
+import BaseLayout from "./base.astro";
 
 type Props = CollectionEntry<"blog">["data"];
 
 const { title, description, publishedDate, updatedDate, source } = Astro.props;
 ---
 
-<Base title={title} description={description}>
+<BaseLayout title={title} description={description}>
   <article class="prose prose-sm max-w-none md:prose-base">
     <div class="not-prose mb-10 text-center">
       <h1 class="mb-4 text-5xl font-bold">{title}</h1>
@@ -29,4 +29,4 @@ const { title, description, publishedDate, updatedDate, source } = Astro.props;
     <p>{description}</p>
     <slot />
   </article>
-</Base>
+</BaseLayout>
