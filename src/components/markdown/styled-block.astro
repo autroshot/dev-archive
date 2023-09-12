@@ -6,10 +6,10 @@ interface Props {
 const { title } = Astro.props;
 ---
 
-<div class="rounded-lg bg-gray-100 p-4 border-l-[6px]">
+<div class="rounded-lg border-l-[6px] bg-gray-100 p-4">
   <div>
     <slot name="icon" />
-    <span class="font-bold ml-1.5 inline-block align-middle">{title}</span>
+    <span class="ml-1.5 inline-block align-middle font-bold">{title}</span>
   </div>
   <div class="mt-1 first:prose-p:mt-0 last:prose-p:mb-0">
     <slot name="content" />

@@ -1,10 +1,10 @@
 ---
-import Source from "@components/markdown/source.astro";
-import type { CollectionEntry } from "astro:content";
-import FormattedDate from "../components/formatted-date.astro";
-import BaseLayout from "./base/index.astro";
+import Source from '@components/markdown/source.astro';
+import type { CollectionEntry } from 'astro:content';
+import FormattedDate from '../components/formatted-date.astro';
+import BaseLayout from './base/index.astro';
 
-type Props = CollectionEntry<"blog">["data"];
+type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, publishedDate, updatedDate, source } = Astro.props;
 ---

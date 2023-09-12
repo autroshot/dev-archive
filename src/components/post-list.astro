@@ -1,8 +1,8 @@
 ---
-import { getCollection } from "astro:content";
-import FormattedDate from "./formatted-date.astro";
+import { getCollection } from 'astro:content';
+import FormattedDate from './formatted-date.astro';
 
-const posts = (await getCollection("blog")).sort(
+const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf(),
 );
 
@@ -13,10 +13,13 @@ type Props = Record<string, never>;
   {
     posts.map((post) => (
       <li>
-        <a href={`/blog/${post.slug}/`} class="text-2xl font-bold hover:text-cyan-600">
+        <a
+          href={`/blog/${post.slug}/`}
+          class="text-2xl font-bold hover:text-cyan-600"
+        >
           {post.data.title}
         </a>
-        <p class="text-gray-500 text-[15px]">
+        <p class="text-[15px] text-gray-500">
           <FormattedDate date={post.data.publishedDate} />
         </p>
       </li>

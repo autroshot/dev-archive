@@ -1,7 +1,7 @@
 :root {
   --code-font-size: 13px;
-  --code-font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
+  --code-font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
   --code-tooltip-success-background: #155e75;
 }
 
