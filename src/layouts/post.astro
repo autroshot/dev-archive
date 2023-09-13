@@ -1,4 +1,5 @@
 ---
+import Draft from '@components/markdown/draft.astro';
 import Source from '@components/markdown/source.astro';
 import type { CollectionEntry } from 'astro:content';
 import FormattedDate from '../components/formatted-date.astro';
@@ -6,7 +7,8 @@ import BaseLayout from './base/index.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, publishedDate, updatedDate, source } = Astro.props;
+const { title, description, publishedDate, updatedDate, source, isDraft } =
+  Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -25,6 +27,7 @@ const { title, description, publishedDate, updatedDate, source } = Astro.props;
       </div>
       <hr />
     </div>
+    {isDraft ? <Draft /> : null}
     {source ? <Source name={source.name} url={source.url} /> : null}
     <p>{description}</p>
     <slot />
