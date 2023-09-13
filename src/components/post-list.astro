@@ -2,7 +2,13 @@
 import { getCollection } from 'astro:content';
 import FormattedDate from './formatted-date.astro';
 
-const posts = (await getCollection('blog')).sort(
+const posts = await getCollection('blog', ({ data }) => {
+  if (import.meta.env.PROD && data.isDraft) {
+    return false;
+  }
+  return true;
+});
+const sortedPosts = posts.sort(
   (a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf(),
 );
 
@@ -11,7 +17,7 @@ type Props = Record<string, never>;
 
 <ul class="flex flex-col space-y-5">
   {
-    posts.map((post) => (
+    sortedPosts.map((post) => (
       <li>
         <a
           href={`/blog/${post.slug}/`}
