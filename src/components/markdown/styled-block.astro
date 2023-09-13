@@ -1,12 +1,24 @@
 ---
+const { title, color = 'gray' } = Astro.props;
+
+const COLORS: Colors = {
+  gray: 'border-gray-300 bg-gray-100',
+  yellow: 'border-yellow-300 bg-yellow-50',
+};
+
 interface Props {
   title: string;
+  color?: ColorNames;
 }
 
-const { title } = Astro.props;
+type Colors = {
+  [ColorName in ColorNames]: string;
+};
+
+type ColorNames = 'gray' | 'yellow';
 ---
 
-<div class="rounded-lg border-l-[6px] border-gray-300 bg-gray-100 p-4">
+<div class:list={['rounded-lg border-l-[6px] p-4', COLORS[color]]}>
   <div>
     <slot name="icon" />
     <span class="ml-1.5 inline-block align-middle font-bold">{title}</span>
