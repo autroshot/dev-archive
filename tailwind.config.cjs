@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         'nanum-gothic': ['"Nanum Gothic"', 'sans-serif'],
+        'noto-sans-kr': ['"Noto Sans KR Variable"', 'sans-serif'],
       },
       typography: (theme) => ({
         DEFAULT: {
@@ -30,6 +31,9 @@ module.exports = {
             },
             'blockquote p:last-of-type::after': {
               content: '',
+            },
+            'h1, h2, h3, h4, h5, h6': {
+              fontFamily: "'Noto Sans KR Variable', sans-serif",
             },
             img: {
               margin: '0 auto',

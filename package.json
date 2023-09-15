@@ -14,6 +14,7 @@
     "@astrojs/rss": "^3.0.0",
     "@astrojs/sitemap": "^3.0.0",
     "@astrojs/tailwind": "^5.0.0",
+    "@fontsource-variable/noto-sans-kr": "^5.0.3",
     "@fontsource/nanum-gothic": "^5.0.10",
     "@tailwindcss/typography": "^0.5.10",
     "astro": "^3.0.0",
