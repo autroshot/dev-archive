@@ -32,6 +32,9 @@ module.exports = {
             'blockquote p:last-of-type::after': {
               content: '',
             },
+            'h1, h2, h3, h4, h5, h6': {
+              fontFamily: "'Noto Sans KR Variable', sans-serif",
+            },
             img: {
               margin: '0 auto',
               borderRadius: '8px',
