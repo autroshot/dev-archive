@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         'nanum-gothic': ['"Nanum Gothic"', 'sans-serif'],
+        'noto-sans-kr': ['"Noto Sans KR Variable"', 'sans-serif'],
       },
       typography: (theme) => ({
         DEFAULT: {
