@@ -1,0 +1,78 @@
+---
+title: "파일 명명 규칙 선택하기"
+description: "파일 명명 규칙으로 kebab-case를 선택한 이유를 설명하고자 한다."
+publishedDate: "2023-09-18"
+---
+import Admonition from '@components/markdown/admonition.astro';
+
+## 선택 과정
+
+프로그래밍에서 많이 사용하는 [명명 규칙(naming convention)](https://en.wikipedia.org/wiki/Naming_convention_(programming))은 다음 네 가지가 있다. 이 중에서 하나를 선택할 것이다.
+
+- PascalCase - 모든 단어의 첫 글자가 대문자
+- camelCase - 첫 단어를 제외한 모든 단어의 첫 글자가 대문자
+- snake_case - 단어의 경계에서 `_`를 사용
+- kebab-case - 단어의 경계에서 `-`을 사용
+
+### 대소문자 방식을 피하는 이유
+
+먼저 대소문자를 사용하는 PascalCase와 camelCase는 파일 이름에 적합하지 않은데 그 이유는 다음과 같다.
+
+파일 및 디렉터리 이름에서 대소문자를 섞어 쓰는 것은 잠재적으로 문제를 일으킬 수 있다. 운영 체제의 파일 시스템에 따라 대소문자를 구분하기도 하고 안 하기도 한다. 예를 들어 Linux에서는 구분하는 반면 Windows와 macOS에서는 구분하지 않는다. 또한 Git의 기본 설정에서는 대소문자의 변화를 무시한다.
+
+<Admonition>
+문제가 생기는 구체적인 사례는 다음 블로그에서 확인할 수 있다.
+
+[Git은 대소문자를 구분하고 파일 시스템은 그렇지 않을 수 있습니다 - Windows에서의 이상한 폴더 병합](https://www.hanselman.com/blog/git-is-casesensitive-and-your-filesystem-may-not-be-weird-folder-merging-on-windows)
+</Admonition>
+
+다른 이유는 예를 통해 알아보겠다.
+
+```
+FoobarFooBarBazQuxQuux.txt
+foobarFooBarBazQuxQuux.txt
+```
+
+```
+foobar_foo_bar_baz_qux_quux.txt
+foobar-foo-bar-baz-qux-quux.txt
+```
+
+취향일 수 있겠지만 단어를 대소문자가 아닌 구분자(`_`, `-`)로 나누는 형식이 단어의 경계가 잘 보인다. 한편 구분자를 사용하는 형식은 이름이 더 길다는 것을 확인할 수 있다. 그러나 파일 이름이 조금 더 길어지는 것은 일반적으로 문제가 되지 않는다.
+
+### 취향의 문제
+
+이제 후보는 구분자를 사용하는 snake_case와 kebab-case로 좁혀졌다. 이 둘 중에서 선택하는 것은 사실 취향 수준에서 결정된다. 그럼에도 내가 kebab-case를 선택한 취향의 근거를 설명하자면 다음과 같다.
+
+snake_case는 언더스코어(`_`), kebab-case는 하이픈(`-`)을 사용한다. 언더스코어와 하이픈은 키보드에서 동일한 곳(<kbd>-</kbd>)에 위치하지만 언더스코어는 <kbd>shift</kbd>가 필요하다. snake_case는 키를 하나 더 누르고 있어야 하므로 입력이 쉽지 않다.
+
+snake_case에서 구분자로 사용하는 언더스코어는 우리가 일반적인 글에서 사용하는 공백과 비슷해 보인다. 따라서 가장 익숙하게 느껴지는 한편 공백으로 착각할 수 있다는 가능성도 생긴다.
+
+마지막으로 kebab-case(🥙)는 가장 맛있게 들린다!
+
+<Admonition>
+이 글에서는 파일과 디렉터리의 이름에 적용할 명명 규칙만 다루고 있다. 소스 코드의 변수, 함수, 클래스, 컴포넌트 등의 이름은 기존 명명 규칙을 그대로 적용할 수 있다. 예를 들어 React 컴포넌트의 경우에는 클래스 또는 함수의 이름에 PascalCase를 사용하고 파일 이름에는 kebab-case를 사용할 수 있다.
+
+```jsx title="my-button.jsx"
+export default function MyButton() {
+  return (
+    <button>버튼</button>
+  );
+}
+```
+</Admonition>
+
+## React 컴포넌트에 적용하기
+
+kebab-case를 도입하는 데 있어 거부감이 들었던 것이 React 컴포넌트였다. React에서는 컴포넌트 이름에 PascalCase를 사용한다. 일반적으로 컴포넌트 파일의 이름은 컴포넌트의 이름과 동일하게 지으며 PascalCase를 적용한다. 하지만 React는 파일 이름의 형식을 강제하지 않으며, 실제로 kebab-case를 적용해도 문제가 생기지 않는다. 가져오기를 할 때도 파일의 이름이 아닌 컴포넌트의 이름을 참조하므로, 자동 완성을 비롯한 에디터의 기능이 잘 작동한다.
+
+## 사용 사례
+
+파일 이름에 kebab-case를 사용하는 사례는 다음과 같다.
+
+- Google - [JavaScript 스타일 가이드](https://google.github.io/styleguide/jsguide.html#file-name)에서는 파일 이름에 snake_case나 kebab-case를 사용할 것을 권고한다.
+- Next.js - kebab-case를 사용할 것을 직접 명시한 내용을 찾을 수는 없었지만, [공식 문서](https://nextjs.org/docs)의 예시나 [템플릿](https://github.com/vercel/commerce)에서 해당 명명 규칙을 사용하는 것을 확인할 수 있다.
+
+## 맺으며
+
+모든 프로젝트에 하나의 파일 명명 규칙을 적용하고 싶다는 욕심에서 시작된 고민이었는데, 나름 만족할 만한 결론을 내렸다. 적어도 내가 있는 React나 JavaScript 생태계에서는 무리 없이 적용할 수 있을 것이다. 더 나아가 프로그래밍에 한정하지 않고 모든 파일 이름에 kebab-case를 적용하는 것도 고려할만 하다.
