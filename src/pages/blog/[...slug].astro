@@ -1,5 +1,6 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { toSlug } from 'src/utils/string';
 import PostLayout from '../../layouts/post.astro';
 
 export async function getStaticPaths() {
@@ -10,7 +11,7 @@ export async function getStaticPaths() {
     return true;
   });
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: toSlug(post.data.title) },
     props: post,
   }));
 }

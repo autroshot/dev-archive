@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { toSlug } from 'src/utils/string';
 import FormattedDate from './formatted-date.astro';
 
 const posts = await getCollection('blog', ({ data }) => {
@@ -20,7 +21,7 @@ type Props = Record<string, never>;
     sortedPosts.map((post) => (
       <li>
         <a
-          href={`/blog/${post.slug}/`}
+          href={`/blog/${toSlug(post.data.title)}/`}
           class="font-noto-sans-kr text-2xl font-bold hover:text-cyan-600"
         >
           {post.data.title}
