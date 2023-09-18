@@ -1,5 +1,5 @@
-function toUrl(str: string): string {
+function toSlug(str: string): string {
   return str.replaceAll(' ', '-');
 }
 
-export { toUrl };
+export { toSlug };
