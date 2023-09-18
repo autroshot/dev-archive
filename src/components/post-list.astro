@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { toUrl } from 'src/utils/string';
 import FormattedDate from './formatted-date.astro';
 
 const posts = await getCollection('blog', ({ data }) => {
@@ -13,10 +14,6 @@ const sortedPosts = posts.sort(
 );
 
 type Props = Record<string, never>;
-
-function toUrl(str: string): string {
-  return str.replaceAll(' ', '-');
-}
 ---
 
 <ul class="flex flex-col space-y-5">

@@ -1,5 +1,6 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { toUrl } from 'src/utils/string';
 import PostLayout from '../../layouts/post.astro';
 
 export async function getStaticPaths() {
@@ -13,10 +14,6 @@ export async function getStaticPaths() {
     params: { slug: toUrl(post.data.title) },
     props: post,
   }));
-
-  function toUrl(str: string): string {
-    return str.replaceAll(' ', '-');
-  }
 }
 type Props = CollectionEntry<'blog'>;
 
