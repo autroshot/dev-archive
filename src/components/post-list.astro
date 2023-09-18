@@ -13,6 +13,10 @@ const sortedPosts = posts.sort(
 );
 
 type Props = Record<string, never>;
+
+function toUrl(str: string): string {
+  return str.replaceAll(' ', '-');
+}
 ---
 
 <ul class="flex flex-col space-y-5">
@@ -20,7 +24,7 @@ type Props = Record<string, never>;
     sortedPosts.map((post) => (
       <li>
         <a
-          href={`/blog/${post.slug}/`}
+          href={`/blog/${toUrl(post.data.title)}/`}
           class="font-noto-sans-kr text-2xl font-bold hover:text-cyan-600"
         >
           {post.data.title}

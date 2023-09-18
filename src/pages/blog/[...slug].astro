@@ -10,9 +10,13 @@ export async function getStaticPaths() {
     return true;
   });
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: toUrl(post.data.title) },
     props: post,
   }));
+
+  function toUrl(str: string): string {
+    return str.replaceAll(' ', '-');
+  }
 }
 type Props = CollectionEntry<'blog'>;
 
