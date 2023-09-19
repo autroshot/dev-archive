@@ -5,7 +5,7 @@
   --code-tooltip-success-background: #155e75;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   :root {
     --code-font-size: 16px;
   }
