@@ -5,6 +5,7 @@ publishedDate: "2023-09-15"
 source:
   name: "Chakra UI - The beginners guide to building an accessible web"
   url: "https://chakra-ui.com/blog/the-beginners-guide-to-building-an-accessible-web"
+tags: ["번역", "웹 접근성"]
 ---
 
 접근성([a11y](https://developer.mozilla.org/en-US/docs/Web/Accessibility))은 수백만 명의 사용자에게 제한 없는 접근을 제공하기 때문에 웹 개발에서 필수적인 부분입니다. 안타깝게도 많은 개발자가 웹 접근성에 필요한 조치를 취하지 않고 간과하는 경우가 많습니다. 최근 보고서에 따르면 [상위 웹사이트의 98%가 완전한 접근성 환경을 제공하지 않는 것](https://webaim.org/projects/million/)으로 나타났습니다.

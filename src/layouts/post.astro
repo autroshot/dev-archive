@@ -1,14 +1,22 @@
 ---
 import Draft from '@components/markdown/draft.astro';
 import Source from '@components/markdown/source.astro';
+import TagList from '@components/tag-list.astro';
 import type { CollectionEntry } from 'astro:content';
 import FormattedDate from '../components/formatted-date.astro';
 import BaseLayout from './base/index.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, publishedDate, updatedDate, source, isDraft } =
-  Astro.props;
+const {
+  title,
+  description,
+  publishedDate,
+  updatedDate,
+  source,
+  isDraft,
+  tags,
+} = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -17,7 +25,10 @@ const { title, description, publishedDate, updatedDate, source, isDraft } =
       <h1 class="mb-4 font-noto-sans-kr text-4xl font-bold lg:text-5xl">
         {title}
       </h1>
-      <div class="mb-2 text-gray-500">
+      <div class="text-center">
+        {tags ? <TagList texts={tags} class="justify-center" /> : null}
+      </div>
+      <div class="mb-2 mt-2 text-gray-500">
         <FormattedDate date={publishedDate} />
         {
           updatedDate && (
