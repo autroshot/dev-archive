@@ -25,8 +25,10 @@ const {
       <h1 class="mb-4 font-noto-sans-kr text-4xl font-bold lg:text-5xl">
         {title}
       </h1>
-      <div class="text-center">{tags ? <TagList texts={tags} /> : null}</div>
-      <div class="mb-2 text-gray-500">
+      <div class="text-center">
+        {tags ? <TagList texts={tags} class="justify-center" /> : null}
+      </div>
+      <div class="mb-2 mt-2 text-gray-500">
         <FormattedDate date={publishedDate} />
         {
           updatedDate && (
