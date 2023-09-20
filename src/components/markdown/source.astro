@@ -1,5 +1,4 @@
 ---
-import descriptionIcon from '@assets/icons/description.svg';
 import StyledBlock from './styled-block.astro';
 
 interface Props {
@@ -10,7 +9,7 @@ interface Props {
 const { name, url } = Astro.props;
 ---
 
-<StyledBlock title="원문" iconSrc={descriptionIcon}>
+<StyledBlock title="원문" iconName="description">
   <Fragment slot="content">
     <a href={url} target="_blank" rel="noopener noreferrer">{name}</a>
   </Fragment>

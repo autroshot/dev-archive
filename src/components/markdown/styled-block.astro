@@ -1,6 +1,6 @@
 ---
-import { Image } from 'astro:assets';
-const { title, iconSrc, color = 'gray' } = Astro.props;
+import Icon from 'astro-icon';
+const { title, iconName, color = 'gray' } = Astro.props;
 
 const COLORS: Colors = {
   gray: 'border-gray-300 bg-gray-100',
@@ -9,7 +9,7 @@ const COLORS: Colors = {
 
 interface Props {
   title: string;
-  iconSrc: ImageMetadata;
+  iconName: string;
   color?: ColorNames;
 }
 
@@ -22,7 +22,7 @@ type ColorNames = 'gray' | 'yellow';
 
 <div class:list={['rounded-lg border-l-[6px] p-4', COLORS[color]]}>
   <div>
-    <Image src={iconSrc} alt="" class="not-prose inline h-6 w-6" />
+    <Icon name={iconName} class="not-prose inline w-6" />
     <span class="ml-1.5 inline-block align-middle font-bold">{title}</span>
   </div>
   <div class="mt-1 first:prose-p:mt-0 last:prose-p:mb-0">
