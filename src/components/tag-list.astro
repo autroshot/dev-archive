@@ -1,13 +1,14 @@
 ---
 import Tag from './tag.astro';
 
-const { texts } = Astro.props;
+const { texts, class: className } = Astro.props;
 
 interface Props {
   texts: Array<string>;
+  class?: string;
 }
 ---
 
-<div class="flex flex-wrap gap-2">
+<div class:list={['flex flex-wrap gap-2', className]}>
   {texts.map((text) => <Tag text={text} />)}
 </div>
