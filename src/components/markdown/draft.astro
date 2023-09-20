@@ -2,21 +2,7 @@
 import StyledBlock from './styled-block.astro';
 ---
 
-<StyledBlock title="주의" color="yellow">
-  <Fragment slot="icon">
-    <svg
-      class="inline"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-    >
-      <path
-        fill="currentColor"
-        d="M2.725 21q-.275 0-.5-.138t-.35-.362q-.125-.225-.138-.488t.138-.512l9.25-16q.15-.25.388-.375T12 3q.25 0 .488.125t.387.375l9.25 16q.15.25.138.513t-.138.487q-.125.225-.35.363t-.5.137H2.725Zm1.725-2h15.1L12 6L4.45 19ZM12 18q.425 0 .713-.288T13 17q0-.425-.288-.713T12 16q-.425 0-.713.288T11 17q0 .425.288.713T12 18Zm0-3q.425 0 .713-.288T13 14v-3q0-.425-.288-.713T12 10q-.425 0-.713.288T11 11v3q0 .425.288.713T12 15Zm0-2.5Z"
-      ></path>
-    </svg>
-  </Fragment>
+<StyledBlock title="주의" iconName="description" color="yellow">
   <Fragment slot="content">
     <p>이 포스트는 초안입니다. 프로덕션에서 표시되지 않습니다.</p>
   </Fragment>
