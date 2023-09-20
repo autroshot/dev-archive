@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import { toSlug } from 'src/utils/string';
 import FormattedDate from './formatted-date.astro';
+import TagList from './tag-list.astro';
 
 const posts = await getCollection('blog', ({ data }) => {
   if (import.meta.env.PROD && data.isDraft) {
@@ -26,6 +27,7 @@ type Props = Record<string, never>;
         >
           {post.data.title}
         </a>
+        {post.data.tags ? <TagList texts={post.data.tags} /> : null}
         <p class="text-[15px] text-gray-500">
           <FormattedDate date={post.data.publishedDate} />
         </p>
