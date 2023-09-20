@@ -5,6 +5,7 @@ publishedDate: "2023-08-31"
 source:
   name: "MDN - Populating the page: how browsers work"
   url: "https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work"
+tags: ["번역", "브라우저"]
 ---
 
 성능과 체감 성능을 개선하는 방법을 이해하려면 브라우저의 작동 방식을 아는 것이 좋습니다.
