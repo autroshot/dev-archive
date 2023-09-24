@@ -9,17 +9,15 @@ interface Props {
 ---
 
 <StyledBlock title="참고 문헌" iconName="description">
-  <Fragment slot="content">
-    <ul>
-      {
-        references.map((reference) => (
-          <li>
-            <a href={reference} target="_blank" rel="noopener noreferrer">
-              {reference}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </Fragment>
+  <ul>
+    {
+      references.map((reference) => (
+        <li>
+          <a href={reference} target="_blank" rel="noopener noreferrer">
+            {reference}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
 </StyledBlock>

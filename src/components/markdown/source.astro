@@ -10,7 +10,5 @@ const { name, url } = Astro.props;
 ---
 
 <StyledBlock title="원문" iconName="description">
-  <Fragment slot="content">
-    <a href={url} target="_blank" rel="noopener noreferrer">{name}</a>
-  </Fragment>
+  <a href={url} target="_blank" rel="noopener noreferrer">{name}</a>
 </StyledBlock>
