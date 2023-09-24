@@ -25,7 +25,9 @@ type ColorNames = 'gray' | 'yellow';
     <Icon name={iconName} class="not-prose inline w-6" />
     <span class="ml-1.5 inline-block align-middle font-bold">{title}</span>
   </div>
-  <div class="mt-1 first:prose-p:mt-0 last:prose-p:mb-0">
+  <div
+    class="mt-1 first:prose-p:mt-0 last:prose-p:mb-0 first:prose-ul:mt-0 last:prose-ul:mb-0"
+  >
     <slot name="content" />
   </div>
 </div>
