@@ -1,12 +1,12 @@
 ---
 import StyledBlock from './styled-block.astro';
 
+const { name, url } = Astro.props;
+
 interface Props {
   name: string;
   url: string;
 }
-
-const { name, url } = Astro.props;
 ---
 
 <StyledBlock title="원문" iconName="description">
