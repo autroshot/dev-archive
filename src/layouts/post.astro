@@ -1,5 +1,6 @@
 ---
 import Draft from '@components/markdown/draft.astro';
+import Reference from '@components/markdown/reference.astro';
 import Source from '@components/markdown/source.astro';
 import TagList from '@components/tag-list.astro';
 import type { CollectionEntry } from 'astro:content';
@@ -16,6 +17,7 @@ const {
   source,
   isDraft,
   tags,
+  references,
 } = Astro.props;
 ---
 
@@ -44,5 +46,10 @@ const {
     {source ? <Source name={source.name} url={source.url} /> : null}
     <p>{description}</p>
     <slot />
+    {
+      references && references.length !== 0 ? (
+        <Reference references={references} />
+      ) : null
+    }
   </article>
 </BaseLayout>
