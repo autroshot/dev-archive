@@ -1,8 +1,14 @@
 ---
 import StyledBlock from './styled-block.astro';
+
+const { title } = Astro.props;
+
+interface Props {
+  title?: string;
+}
 ---
 
-<StyledBlock title="참고" iconName="info">
+<StyledBlock title={title ?? '참고'} iconName="info">
   <Fragment slot="content">
     <slot />
   </Fragment>
