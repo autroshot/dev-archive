@@ -1,5 +1,4 @@
 ---
-import { reference } from 'astro:content';
 import StyledBlock from './styled-block.astro';
 
 const { references } = Astro.props;
@@ -11,6 +10,6 @@ interface Props {
 
 <StyledBlock title="참고 문헌" iconName="info">
   <Fragment slot="content">
-    {references.map((refrence) => `- ${reference}<br>`)}
+    {references.map((reference) => `- ${reference}<br>`)}
   </Fragment>
 </StyledBlock>
