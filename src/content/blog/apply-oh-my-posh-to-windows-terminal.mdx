@@ -1,0 +1,99 @@
+---
+title: "Windows Terminal에 Oh My Posh 적용하기"
+description: "Windows Terminal에서 PowerShell에 Oh My Posh를 적용하는 방법을 알아본다."
+publishedDate: "2023-09-24"
+tags: ["Windows Terminal", "PowerShell", "Oh My Posh"]
+---
+import Admonition from '@components/markdown/admonition.astro';
+
+## 준비물
+
+- [PowerShell](https://www.microsoft.com/store/productid/9MZ1SNWT0N5D?ocid=pdpshare)
+- [Windows Terminal](https://www.microsoft.com/store/productid/9N0DX20HK701?ocid=pdpshare)
+
+위의 프로그램은 모두 Microsoft Store에서 간편하게 앱으로 설치할 수 있다. 윈도우에 기본적으로 포함되어 있는 Windows PowerShell 5.1이 아닌 PowerShell(6.0 이상)을 새로 설치해야 한다.
+
+## 글꼴 설치하기
+
+Oh My Posh에서 사용하는 아이콘이 제대로 표시되려면 [Nerd Fonts](https://www.nerdfonts.com/)를 사용해야 한다. Oh My Posh에서는 Nerd Fonts의 여러 폰트 중에서도 Meslo LGM NF를 추천한다. [이곳](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip)에서 파일을 받아 압축을 풀고 Meslo LGM NF에 해당하는 글꼴 4개를 설치한다.
+
+- MesloLGMNerdFont-Regular.ttf
+- MesloLGMNerdFont-Italic.ttf
+- MesloLGMNerdFont-Bold.ttf
+- MesloLGMNerdFont-BoldItalic.ttf
+
+## Windows Terminal 설정하기
+
+<Admonition>
+Windows Terminal은 명령줄(command line)이나 셸(shell)을 실행하는 프로그램이다. 즉 Windows Terminal에서는 명령 프롬프트(`cmd.exe`), PowerShell, Ubuntu 등을 실행할 수 있다.
+</Admonition>
+
+Windows Terminal의 설정에서 기본 프로필을 PowerShell로 설정한다. 이제 터미널을 실행하거나 새 탭을 열면 기본적으로 PowerShell이 열린다.
+
+다음으로 앞에서 설치한 글꼴을 지정해야 한다. 설정 ➜ 프로필 ➜ PowerShell ➜ 추가 설정 ➜ 모양 ➜ 텍스트 ➜ 글꼴에서 `MesloLGM Nerd Font`를 선택한다.
+
+![Windows Terminal 설정에서 글꼴을 지정한다.](@assets/apply-oh-my-posh-to-windows-terminal/windows-terminal-settings.png)
+
+원한다면 추가로 색 구성표나 글꼴 크기 등을 변경할 수 있다.
+
+## Oh My Posh 설치하기
+
+Windows Terminal에서 다음 명령을 실행하여 Oh My Posh를 설치한다.
+
+```shell
+winget install JanDeDobbeleer.OhMyPosh -s winget
+```
+
+설치 후에는 터미널 재실행이 필요하다.
+
+## 프로필 설정하기
+
+<Admonition>
+[프로필](https://learn.microsoft.com/ko-kr/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.3)은 PowerShell이 시작될 때 실행되는 스크립트이다.
+</Admonition>
+
+PowerShell에 Oh My Posh를 적용하려면 프로필을 설정할 필요가 있다. 프로필을 이전에 만든 적이 없다면 다음 명령으로 프로필을 생성한다.
+
+```shell
+if (!(Test-Path -Path $PROFILE)) {
+  New-Item -ItemType File -Path $PROFILE -Force
+}
+```
+
+이제 프로필을 메모장으로 열어 편집을 시작한다.
+
+```shell
+notepad $PROFILE
+```
+
+Oh My Posh를 실행하는 다음 스크립트를 프로필에 작성하고 저장한다.
+
+```shell title="Microsoft.PowerShell_profile.ps1"
+oh-my-posh init pwsh | Invoke-Expression
+```
+
+이제 터미널을 다시 실행하면 Oh My Posh가 적용된 모습을 확인할 수 있다.
+
+!['Oh My Posh'가 적용된 PowerShell](@assets/apply-oh-my-posh-to-windows-terminal/powershell-with-oh-my-posh.png)
+
+<Admonition>
+다른 테마를 설정하고 싶다면 [테마 페이지](https://ohmyposh.dev/docs/themes)에서 원하는 테마를 고르고 명령의 `config` 인수에 넣는다. 예를 들어 [M365Princess 테마](https://ohmyposh.dev/docs/themes#m365princess)를 설정하는 명령은 다음과 같다.
+
+```shell
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/M365Princess.omp.json" | Invoke-Expression
+```
+</Admonition>
+
+## Visual Studio Code 설정하기
+
+[Visual Studio Code](https://code.visualstudio.com/)에서도 PowerShell을 사용하고 Oh My Posh를 적용하고 싶다면 설정 값을 다음과 같이 변경한다.
+
+| 설정 ID                                    | 값                 |
+| ------------------------------------------ | ------------------ |
+| terminal.integrated.defaultProfile.windows | PowerShell         |
+| terminal.integrated.fontFamily             | MesloLGM Nerd Font |
+
+## 참고
+
+- https://www.hanselman.com/blog/my-ultimate-powershell-prompt-with-oh-my-posh-and-the-windows-terminal
+- https://learn.microsoft.com/ko-kr/powershell/
