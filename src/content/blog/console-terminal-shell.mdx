@@ -1,0 +1,94 @@
+---
+title: "콘솔, 터미널, 셸의 차이점"
+description: "콘솔, 터미널, 셸의 정의와 차이에 대해 알아본다."
+publishedDate: "2023-09-25"
+tags: ["Console", "Shell", "Terminal"]
+source:
+  name: "Scott Hanselman - What's the difference between a console, a terminal, and a shell?"
+  url: "https://www.hanselman.com/blog/whats-the-difference-between-a-console-a-terminal-and-a-shell"
+---
+import Admonition from '@components/markdown/admonition.astro';
+
+몇 가지 중요한 용어에 대한 근본적인 오해가 있는 비슷한 질문이 많이 보입니다.
+
+- PowerShell 위에서 Windows 터미널을 사용하는 이유는 무엇인가요?
+- Bash용 WSL은 필요 없어요, 전 Cygwin을 사용하거든요.
+- PowerShell Core와 함께 ConEmu를 사용할 수 있나요, 아니면 Windows 터미널을 사용해야 하나요?
+
+먼저 용어집부터 시작하여 몇 가지 단어를 명확히 해보겠습니다.
+
+## 터미널(Terminal)
+
+터미널이라는 단어는 종료(terminate)에서 유래한 것으로, 통신 프로세스의 종료(terminal)의 끝을 나타냅니다. 실제 작업은 메인프레임이나 대형 컴퓨터의 다른 쪽에서 이루어지는 동안, 옆에서 입력만 받고 텍스트를 표시하는 텍스트 기반 환경을 가리킬 때 '멍청한 터미널'이라는 말을 자주 사용하게 됩니다.
+
+TTY 또는 전신타자기(teletypewriter)는 최초의 터미널이었습니다. 문자 그대로 화면이 아닌 타자기를 앞에 두고 있는 것과 같습니다. 터미널에 타이핑을 하면 종이 위에 텍스트가 표시되고 그 텍스트가 컴퓨터에 입력됩니다. 컴퓨터가 응답하면 타자기가 자동으로 같은 종이에 입력하는 것을 볼 수 있습니다.
+
+![터미널](@assets/console-terminal-shell/terminal.png)
+
+소프트웨어적 의미에서 터미널을 지칭할 때는 문자 그대로 TTY 또는 터미널의 소프트웨어 버전을 의미합니다. [Windows 터미널](https://www.hanselman.com/blog/ANewConsoleForWindowsItsTheOpenSourceWindowsTerminal.aspx)이 바로 그것입니다. Windows 터미널은 텍스트 출력을 표시하는 데 정말 능숙합니다. 터미널은 입력을 받아 <strong>전달</strong>할 수 있습니다. 하지만 터미널은 똑똑하지 않습니다. 실제로 입력을 처리하지 않으며, 파일을 보거나 <strong>생각</strong>하지도 않습니다.
+
+## 콘솔(Console)
+
+20세기 중반의 사람들은 거실에 콘솔 또는 콘솔 캐비닛이라는 가구를 두었습니다. 컴퓨터에서 콘솔은 화면과 키보드가 결합된 콘솔 또는 캐비닛을 말합니다. 그러나 콘솔은 사실상 터미널입니다. 엄밀히 말하면 콘솔은 장치이고 터미널은 이제 콘솔 내부의 소프트웨어 프로그램입니다.
+
+![콘솔](@assets/console-terminal-shell/console.png)
+
+소프트웨어 세계에서 터미널과 콘솔은 모든 면에서 동의어입니다.
+
+## 셸(Shell)
+
+셸은 터미널이 사용자 입력을 전송하는 프로그램입니다. 셸은 출력을 생성하고 이를 다시 터미널로 전달하여 표시합니다. 다음은 셸의 몇 가지 예입니다.
+
+- bash, fish, zsh, ksh, sh, tsch
+- PowerShell, pwsh
+- cmd, [yori](http://www.malsmith.net/yori/), 4dos, command.com
+
+<strong>셸 선택이 터미널 애플리케이션 선택을 좌우하지 않으며, 좌우해서도 안 됩니다.</strong> 이제 이러한 터미널을 사용하고 있으므로 이해가 잘 될 것입니다.
+
+<Admonition>
+WSL과 WSL2(리눅스용 Windows 하위 시스템)는 Windows 10에서 실행되는 완전한 로컬 리눅스(또는 복수의 리눅스)입니다. 이들은 완전하고 진짜입니다. [WSL2](https://www.hanselman.com/blog/RubyOnRailsOnWindowsIsNotJustPossibleItsFabulousUsingWSL2AndVSCode.aspx)는 실제 리눅스 커널과 함께 제공되며 Windows에서 실행됩니다. Cygwin은 리눅스가 아닙니다. Cygwin은 Windows에서 리눅스와 유사한 기능을 제공하지만 리눅스는 아닌 GNU 및 오픈 소스 도구의 대규모 모음입니다. Cygwin은 가짜입니다. Win32에 대해 컴파일된 GNU 유틸리티입니다. Cygwin은 훌륭하지만 그 차이를 아는 것이 중요합니다. Cygwin은 bash 셸 스크립트를 실행할 수 있습니다. 하지만 Apache, Docker, 기타 실제 ELF 바이너리 및 Linux 앱은 실행하지 않습니다.
+</Admonition>
+
+## 어떤 Windows 콘솔을 선택할까?
+
+Windows와 함께 제공되는 셸은 여러 가지가 있습니다. 제가 지금 실행 중인 몇 가지를 소개하겠습니다. 크롬이나 테두리와 제목을 주목해 보세요. 이러한 셸은 모두 conhost.exe라는 들어본 적도 없는 레거시 Windows 콘솔에서 호스팅됩니다. 명령 프롬프트로 이동하여 powershell, cmd, ubuntu를 입력하면 원하는 만큼의 셸이 실행됩니다. Conhost는 입력 및 출력 작업을 수행합니다.
+
+이제 conhost라는 것은 잊어버리세요. 아주 낡고 형편없거든요.
+
+![Windows와 함께 제공되는 셸](@assets/console-terminal-shell/shells-that-come-with-windows.png)
+
+## 의사 콘솔, 의사 터미널, PTY, 의사 TTY ([ConPTY](https://devblogs.microsoft.com/commandline/windows-command-line-introducing-the-windows-pseudo-console-conpty/?WT.mc_id=-blog-scottha))
+
+[의사 터미널](https://en.wikipedia.org/wiki/Pseudoterminal)은 터미널을 에뮬레이트하는 터미널 에뮬레이터 또는 소프트웨어 인터페이스입니다. 의사 터미널은 앞에서 본 터미널처럼 가장합니다. *Nix 시스템에는 오랫동안 의사 터미널(PTY) 인프라가 있었으며, 이제는 Windows에도 [의사 콘솔(ConPTY)](https://devblogs.microsoft.com/commandline/windows-command-line-introducing-the-windows-pseudo-console-conpty/?WT.mc_id=-blog-scottha)이 있습니다.
+
+Windows의 새로운 ConPTY 인터페이스는 Windows에서 콘솔과 터미널의 미래입니다. (내장형이 아닌) 타사 Windows용 콘솔 애플리케이션을 선택한다면 해당 애플리케이션이 ConPTY를 지원하는지 확인하세요. ConPTY가 지원된다면 화면 스크래핑이나 기타 해킹을 사용하는 일부 구형 콘솔보다 더 나은 경험을 할 수 있습니다.
+
+![터미널과 PTY와 앱 또는 셸 간의 통신](@assets/console-terminal-shell/terminal-pty-app-shell.png)
+
+## Windows 콘솔 선택으로 돌아가기
+
+Windows에서 사용할 수 있는 셸이 많다는 점을 기억하고, conhost.exe가 마음에 들지 않는다면 (마음에 들어서도 안 됨) 사용할 수 있는 타사 콘솔이 많이 있습니다.
+
+- [Hyper](https://hyper.is/)
+- [ConEmu](https://www.hanselman.com/blog/ConEmuTheWindowsTerminalConsolePromptWeveBeenWaitingFor.aspx)
+- [cmder](http://cmder.net/)
+- [Console2](https://www.hanselman.com/blog/Console2ABetterWindowsCommandPrompt.aspx)
+- ConsoleZ
+- [Terminus](https://eugeny.github.io/terminus/)
+- [FluentTerminal](https://github.com/felixse/FluentTerminal?WT.mc_id=-blog-scottha)
+- [ZOC](https://www.emtec.com/zoc/index.html)
+- [MobaXterm](https://mobaxterm.mobatek.net/)
+- [Babun](http://babun.github.io/) ([죽었음](https://github.com/babun/babun/issues/868?WT.mc_id=-blog-scottha))
+- [4NT/jpSoftware](https://jpsoft.com/) (무료 아님)
+- [Putty](https://www.puttygen.com/)
+- [MinTTY](http://mintty.github.io/)
+- [Windows 터미널](https://www.microsoft.com/p/windows-terminal-preview/9n0dx20hk701?activetab=pivot:overviewtab&WT.mc_id=-blog-scottha) (Microsoft Store에서 무료)
+- [XTermjs](https://xtermjs.org/) - 터미널을 앱에 통합할 수 있는 타입스크립트 컴포넌트
+- VSCode에는 터미널이 포함됨
+- Visual Studio 2019 Preview에는 터미널이 포함됨
+
+이 모든 터미널은 위의 모든 셸과 제가 놓친 모든 셸을 지원합니다. 셸은 터미널이 아니기 때문입니다. 여러분을 행복하게 만드는 것을 선택하세요. 저는 Windows 터미널의 WSL2에서 PowerShell Core와 우분투를 사용합니다.
+
+![Windows 터미널](@assets/console-terminal-shell/windows-terminal.png)
+
+이 글이 용어 정리에 도움이 되셨기를 바랍니다.
