@@ -37,7 +37,7 @@ module.exports = {
             },
             img: {
               margin: '0 auto',
-              borderRadius: '8px',
+              borderRadius: '4px',
             },
             code: {
               fontFamily:
