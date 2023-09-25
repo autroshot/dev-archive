@@ -1,5 +1,5 @@
 function toSlug(str: string): string {
-  return str.replaceAll(' ', '-');
+  return str.replaceAll(', ', '-').replaceAll(' ', '-');
 }
 
 export { toSlug };
