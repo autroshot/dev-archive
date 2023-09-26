@@ -1,13 +1,38 @@
 ---
+import type { Props as StyledBlockProps } from './styled-block.astro';
 import StyledBlock from './styled-block.astro';
 
-const { title } = Astro.props;
+const { type = 'note', title } = Astro.props;
+const styledBlockProps = createStyledBlockProps(type);
+
+function createStyledBlockProps(type: Type): StyledBlockProps {
+  switch (type) {
+    case 'note':
+      return {
+        title: title ?? '참고',
+        iconName: 'info',
+        color: 'gray',
+      };
+    case 'caution':
+      return {
+        title: title ?? '주의',
+        iconName: 'warning',
+        color: 'yellow',
+      };
+  }
+}
 
 interface Props {
+  type?: Type;
   title?: string;
 }
+type Type = 'note' | 'caution';
 ---
 
-<StyledBlock title={title ?? '참고'} iconName="info">
+<StyledBlock
+  title={styledBlockProps.title}
+  iconName={styledBlockProps.iconName}
+  color={styledBlockProps.color}
+>
   <slot />
 </StyledBlock>
