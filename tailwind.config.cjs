@@ -15,7 +15,7 @@ module.exports = {
               textUnderlinePosition: 'under',
               color: theme('colors.cyan.700'),
             },
-            'a:hover': { textDecoration: 'initial' },
+            'a:hover': { textDecorationThickness: '2px' },
             'ol > li::marker': {
               color: theme('colors.gray.700'),
             },
