@@ -1,4 +1,5 @@
 ---
+import ExternalLink from '@components/external-link.astro';
 import StyledBlock from './styled-block.astro';
 
 const { name, url } = Astro.props;
@@ -10,5 +11,5 @@ interface Props {
 ---
 
 <StyledBlock title="원문" iconName="description">
-  <a href={url} target="_blank" rel="noopener noreferrer">{name}</a>
+  <ExternalLink href={url}>{name}</ExternalLink>
 </StyledBlock>

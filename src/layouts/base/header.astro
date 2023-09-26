@@ -1,4 +1,5 @@
 ---
+import ExternalLink from '@components/external-link.astro';
 import Icon from 'astro-icon';
 import { SITE_TITLE } from '../../consts';
 import HeaderLink from './header-link.astro';
@@ -12,14 +13,10 @@ import HeaderLink from './header-link.astro';
       <HeaderLink href="/blog">Blog</HeaderLink>
     </div>
     <div class="hidden md:flex">
-      <a
-        href="https://github.com/autroshot/dev-archive"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <ExternalLink href="https://github.com/autroshot/dev-archive">
         <span class="sr-only">깃허브 저장소로 가기</span>
         <Icon name="logos:github" class="w-8" />
-      </a>
+      </ExternalLink>
     </div>
   </nav>
 </header>

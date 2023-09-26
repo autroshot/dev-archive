@@ -1,4 +1,5 @@
 ---
+import ExternalLink from '@components/external-link.astro';
 import StyledBlock from './styled-block.astro';
 
 const { references } = Astro.props;
@@ -13,9 +14,7 @@ interface Props {
     {
       references.map((reference) => (
         <li>
-          <a href={reference} target="_blank" rel="noopener noreferrer">
-            {reference}
-          </a>
+          <ExternalLink href={reference}>{reference}</ExternalLink>
         </li>
       ))
     }
