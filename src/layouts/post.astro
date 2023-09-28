@@ -9,7 +9,14 @@ import BaseLayout from './base/index.astro';
 
 interface Props {
   postData: CollectionEntry<'blog'>['data'];
-  seriesData?: CollectionEntry<'series'>['data'];
+  convertedSeries?: {
+    title: string;
+    postLinks: Array<PostLink>;
+  };
+}
+interface PostLink {
+  href: string;
+  text: string;
 }
 
 const { postData } = Astro.props;
