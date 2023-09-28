@@ -10,17 +10,31 @@ export async function getStaticPaths() {
     }
     return true;
   });
-  return posts.map((post) => ({
-    params: { slug: toSlug(post.data.title) },
-    props: post,
-  }));
-}
-type Props = CollectionEntry<'blog'>;
+  const series = await getCollection('series');
 
-const post = Astro.props;
+  return posts.map((post) => {
+    const foundSeries = series.find((item) =>
+      item.data.posts.some((seriesPost) => seriesPost.slug === post.slug),
+    );
+
+    return {
+      params: { slug: toSlug(post.data.title) },
+      props: { post, series: foundSeries },
+    };
+  });
+}
+interface Props {
+  post: CollectionEntry<'blog'>;
+  series?: CollectionEntry<'series'>;
+}
+
+const { post, series } = Astro.props;
 const { Content } = await post.render();
 ---
 
-<PostLayout postData={structuredClone(post.data)}>
+<PostLayout
+  postData={structuredClone(post.data)}
+  seriesData={structuredClone(series?.data)}
+>
   <Content />
 </PostLayout>
