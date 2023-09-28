@@ -1,0 +1,28 @@
+---
+import ExternalLink from '@components/external-link.astro';
+import StyledBlock from './styled-block.astro';
+
+const { title = '시리즈', postLinks } = Astro.props;
+
+interface Props {
+  title?: string;
+  postLinks: Array<PostLink>;
+}
+
+interface PostLink {
+  href: string;
+  text: string;
+}
+---
+
+<StyledBlock title={title} color="cyan" iconName="description">
+  <ol>
+    {
+      postLinks.map((postLink) => (
+        <li>
+          <ExternalLink href={postLink.href}>{postLink.text}</ExternalLink>
+        </li>
+      ))
+    }
+  </ol>
+</StyledBlock>
