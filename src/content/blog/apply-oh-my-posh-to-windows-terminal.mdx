@@ -1,8 +1,8 @@
 ---
-title: "Windows Terminal에 Oh My Posh 적용하기"
-description: "Windows Terminal에서 PowerShell에 Oh My Posh를 적용하는 방법을 알아본다."
+title: "Windows 터미널에 Oh My Posh 적용하기"
+description: "Windows 터미널에서 PowerShell에 Oh My Posh를 적용하는 방법을 알아본다."
 publishedDate: "2023-09-24"
-tags: ["Windows Terminal", "PowerShell", "Oh My Posh"]
+tags: ["Windows 터미널", "PowerShell", "Oh My Posh"]
 references: ["https://www.hanselman.com/blog/my-ultimate-powershell-prompt-with-oh-my-posh-and-the-windows-terminal", "https://learn.microsoft.com/ko-kr/powershell/"]
 ---
 import Admonition from '@components/markdown/admonition.astro';
@@ -10,7 +10,7 @@ import Admonition from '@components/markdown/admonition.astro';
 ## 준비물
 
 - [PowerShell](https://www.microsoft.com/store/productid/9MZ1SNWT0N5D?ocid=pdpshare)
-- [Windows Terminal](https://www.microsoft.com/store/productid/9N0DX20HK701?ocid=pdpshare)
+- [Windows 터미널](https://www.microsoft.com/store/productid/9N0DX20HK701?ocid=pdpshare)
 
 위의 프로그램은 모두 Microsoft Store에서 간편하게 앱으로 설치할 수 있다. 윈도우에 기본적으로 포함되어 있는 Windows PowerShell 5.1이 아닌 PowerShell(6.0 이상)을 새로 설치해야 한다.
 
@@ -23,23 +23,23 @@ Oh My Posh에서 사용하는 아이콘이 제대로 표시되려면 [Nerd Fonts
 - MesloLGMNerdFont-Bold.ttf
 - MesloLGMNerdFont-BoldItalic.ttf
 
-## Windows Terminal 설정하기
+## Windows 터미널 설정하기
 
-<Admonition title="Windows Terminal">
-Windows Terminal은 명령줄(command line)이나 셸(shell)을 실행하는 프로그램이다. 즉 Windows Terminal에서는 명령 프롬프트(`cmd.exe`), PowerShell, Ubuntu 등을 실행할 수 있다.
+<Admonition title="Windows 터미널">
+Windows 터미널은 명령줄(command line)이나 셸(shell)을 실행하는 프로그램이다. 즉 Windows 터미널에서는 명령 프롬프트(`cmd.exe`), PowerShell, Ubuntu 등을 실행할 수 있다.
 </Admonition>
 
-Windows Terminal의 설정에서 기본 프로필을 PowerShell로 설정한다. 이제 터미널을 실행하거나 새 탭을 열면 기본적으로 PowerShell이 열린다.
+Windows 터미널의 설정에서 기본 프로필을 PowerShell로 설정한다. 이제 터미널을 실행하거나 새 탭을 열면 기본적으로 PowerShell이 열린다.
 
 다음으로 앞에서 설치한 글꼴을 지정해야 한다. 설정 ➜ 프로필 ➜ PowerShell ➜ 추가 설정 ➜ 모양 ➜ 텍스트 ➜ 글꼴에서 `MesloLGM Nerd Font`를 선택한다.
 
-![Windows Terminal 설정에서 글꼴을 지정한다.](@assets/apply-oh-my-posh-to-windows-terminal/windows-terminal-settings.png)
+![Windows 터미널 설정에서 글꼴을 지정한다.](@assets/apply-oh-my-posh-to-windows-terminal/windows-terminal-settings.png)
 
 원한다면 추가로 색 구성표나 글꼴 크기 등을 변경할 수 있다.
 
 ## Oh My Posh 설치하기
 
-Windows Terminal에서 다음 명령을 실행하여 Oh My Posh를 설치한다.
+Windows 터미널에서 다음 명령을 실행하여 Oh My Posh를 설치한다.
 
 ```shell
 winget install JanDeDobbeleer.OhMyPosh -s winget
