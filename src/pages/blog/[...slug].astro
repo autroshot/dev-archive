@@ -21,6 +21,6 @@ const post = Astro.props;
 const { Content } = await post.render();
 ---
 
-<PostLayout {...post.data}>
+<PostLayout postData={structuredClone(post.data)}>
   <Content />
 </PostLayout>

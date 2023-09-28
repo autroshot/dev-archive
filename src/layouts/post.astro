@@ -7,48 +7,49 @@ import type { CollectionEntry } from 'astro:content';
 import FormattedDate from '../components/formatted-date.astro';
 import BaseLayout from './base/index.astro';
 
-type Props = CollectionEntry<'blog'>['data'];
+interface Props {
+  postData: CollectionEntry<'blog'>['data'];
+}
 
-const {
-  title,
-  description,
-  publishedDate,
-  updatedDate,
-  source,
-  isDraft,
-  tags,
-  references,
-} = Astro.props;
+const { postData } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={postData.title} description={postData.description}>
   <article class="prose prose-sm max-w-none lg:prose-base">
     <div class="not-prose mb-10 text-center">
       <h1 class="mb-4 font-noto-sans-kr text-4xl font-bold lg:text-5xl">
-        {title}
+        {postData.title}
       </h1>
       <div class="text-center">
-        {tags ? <TagList texts={tags} class="justify-center" /> : null}
+        {
+          postData.tags ? (
+            <TagList texts={postData.tags} class="justify-center" />
+          ) : null
+        }
       </div>
       <div class="mb-2 mt-2 text-gray-500">
-        <FormattedDate date={publishedDate} />
+        <FormattedDate date={postData.publishedDate} />
         {
-          updatedDate && (
+          postData.updatedDate && (
             <div class="italic">
-              Last updated on <FormattedDate date={updatedDate} />
+              Last updated on <FormattedDate date={postData.updatedDate} />
             </div>
           )
         }
       </div>
       <hr />
     </div>
-    {isDraft ? <Draft /> : null}
-    {source ? <Source name={source.name} url={source.url} /> : null}
-    <p>{description}</p>
+    {postData.isDraft ? <Draft /> : null}
+    {
+      postData.source ? (
+        <Source name={postData.source.name} url={postData.source.url} />
+      ) : null
+    }
+    <p>{postData.description}</p>
     <slot />
     {
-      references && references.length !== 0 ? (
-        <Reference references={references} />
+      postData.references && postData.references.length !== 0 ? (
+        <Reference references={postData.references} />
       ) : null
     }
   </article>
