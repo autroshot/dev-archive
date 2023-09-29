@@ -1,5 +1,5 @@
 ---
-import { getCollection, getEntries, type CollectionEntry } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import { toSlug } from 'src/utils/string';
 import PostLayout from '../../layouts/post.astro';
 
@@ -12,59 +12,29 @@ export async function getStaticPaths() {
   });
   const series = await getCollection('series');
 
-  const promises = posts.map(async (post) => {
+  return posts.map((post) => {
     const foundSeries = series.find((item) =>
       item.data.posts.some((seriesPost) => seriesPost.slug === post.slug),
     );
 
-    if (!foundSeries) {
-      return {
-        params: { slug: toSlug(post.data.title) },
-        props: { post, convertedSeries: undefined },
-      };
-    }
-    const convertedSeries = await convertSeries(foundSeries);
-
     return {
       params: { slug: toSlug(post.data.title) },
-      props: { post, convertedSeries },
+      props: { post, series: foundSeries },
     };
-
-    async function convertSeries(series: CollectionEntry<'series'>) {
-      const title = series.data.title;
-      const seriesPosts = await getEntries(series.data.posts);
-      const postLinks = seriesPosts.map((seriesPost) => {
-        return {
-          href: `/blog/${toSlug(seriesPost.data.title)}`,
-          text: seriesPost.data.title,
-        };
-      });
-
-      return { title, postLinks };
-    }
   });
-
-  return Promise.all(promises);
 }
 interface Props {
   post: CollectionEntry<'blog'>;
-  convertedSeries?: {
-    title: string;
-    postLinks: Array<PostLink>;
-  };
-}
-interface PostLink {
-  href: string;
-  text: string;
+  series: CollectionEntry<'series'> | undefined;
 }
 
-const { post, convertedSeries } = Astro.props;
+const { post, series } = Astro.props;
 const { Content } = await post.render();
 ---
 
 <PostLayout
   postData={structuredClone(post.data)}
-  convertedSeries={structuredClone(convertedSeries)}
+  seriesData={structuredClone(series?.data)}
 >
   <Content />
 </PostLayout>

@@ -1,6 +1,7 @@
 ---
 import Draft from '@components/markdown/draft.astro';
 import Reference from '@components/markdown/reference.astro';
+import Series from '@components/markdown/series.astro';
 import Source from '@components/markdown/source.astro';
 import TagList from '@components/tag-list.astro';
 import type { CollectionEntry } from 'astro:content';
@@ -9,17 +10,10 @@ import BaseLayout from './base/index.astro';
 
 interface Props {
   postData: CollectionEntry<'blog'>['data'];
-  convertedSeries?: {
-    title: string;
-    postLinks: Array<PostLink>;
-  };
-}
-interface PostLink {
-  href: string;
-  text: string;
+  seriesData: CollectionEntry<'series'>['data'] | undefined;
 }
 
-const { postData } = Astro.props;
+const { postData, seriesData } = Astro.props;
 ---
 
 <BaseLayout title={postData.title} description={postData.description}>
@@ -48,6 +42,7 @@ const { postData } = Astro.props;
       <hr />
     </div>
     {postData.isDraft ? <Draft /> : null}
+    {seriesData ? <Series seriesData={seriesData} /> : null}
     {
       postData.source ? (
         <Source name={postData.source.name} url={postData.source.url} />
