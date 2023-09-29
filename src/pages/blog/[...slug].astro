@@ -23,13 +23,14 @@ export async function getStaticPaths() {
     };
   });
 }
+
+const { post, series } = Astro.props;
+const { Content } = await post.render();
+
 interface Props {
   post: CollectionEntry<'blog'>;
   series: CollectionEntry<'series'> | undefined;
 }
-
-const { post, series } = Astro.props;
-const { Content } = await post.render();
 ---
 
 <PostLayout
