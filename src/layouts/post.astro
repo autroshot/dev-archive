@@ -8,12 +8,12 @@ import type { CollectionEntry } from 'astro:content';
 import FormattedDate from '../components/formatted-date.astro';
 import BaseLayout from './base/index.astro';
 
+const { postData, seriesData } = Astro.props;
+
 interface Props {
   postData: CollectionEntry<'blog'>['data'];
   seriesData: CollectionEntry<'series'>['data'] | undefined;
 }
-
-const { postData, seriesData } = Astro.props;
 ---
 
 <BaseLayout title={postData.title} description={postData.description}>
