@@ -5,6 +5,7 @@ const { title, iconName, color = 'gray' } = Astro.props;
 const COLORS: Colors = {
   gray: 'border-gray-300 bg-gray-100',
   yellow: 'border-yellow-300 bg-yellow-50',
+  cyan: 'border-cyan-300 bg-cyan-50',
 };
 
 export interface Props {
@@ -17,7 +18,7 @@ type Colors = {
   [ColorName in ColorNames]: string;
 };
 
-type ColorNames = 'gray' | 'yellow';
+type ColorNames = 'gray' | 'yellow' | 'cyan';
 ---
 
 <div class:list={['rounded-lg border-l-[6px] p-4', COLORS[color]]}>

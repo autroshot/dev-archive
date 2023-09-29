@@ -1,0 +1,45 @@
+---
+import ExternalLink from '@components/external-link.astro';
+import { getEntries, type CollectionEntry } from 'astro:content';
+import { toSlug } from 'src/utils/string';
+import StyledBlock from './styled-block.astro';
+
+const { seriesData } = Astro.props;
+
+const postLinks = await getPostLinks(seriesData.posts);
+
+async function getPostLinks(
+  seriesPostsRef: CollectionEntry<'series'>['data']['posts'],
+): Promise<PostLink[]> {
+  const seriesPosts = await getEntries(seriesPostsRef);
+  const postLinks = seriesPosts.map((seriesPost) => {
+    return {
+      href: `/blog/${toSlug(seriesPost.data.title)}`,
+      text: seriesPost.data.title,
+    };
+  });
+
+  return postLinks;
+}
+
+interface Props {
+  seriesData: CollectionEntry<'series'>['data'];
+}
+
+interface PostLink {
+  href: string;
+  text: string;
+}
+---
+
+<StyledBlock title={seriesData.title} color="cyan" iconName="description">
+  <ol>
+    {
+      postLinks.map((postLink) => (
+        <li>
+          <ExternalLink href={postLink.href}>{postLink.text}</ExternalLink>
+        </li>
+      ))
+    }
+  </ol>
+</StyledBlock>
