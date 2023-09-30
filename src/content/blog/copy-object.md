@@ -30,15 +30,12 @@ const arrayCopy = [ ...array ];
 
 ## 깊은 복사
 
-`JSON.stringify()`와 `JSON.parse()`를 활용한다.
+`structuredClone()`를 사용한다.
 
 ```js
 const ingredientsList = ['noodles', { list: ['eggs', 'flour', 'water'] }];
 
-const ingredientsListCopy = JSON.parse(JSON.stringify(ingredientsList));
+const ingredientsListCopy = structuredClone(ingredientsList);
 ```
 
-이 방법은 함수, 심볼형, `undefined`, `Date` 등의 값이 손실되거나 변형된다.
-
-대신 [`structuredClone()`](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone)이나 로대시의 [`cloneDeep`](https://lodash.com/docs#cloneDeep)을 사용할 수 있다.
-
+대신 `JSON.stringify()`와 `JSON.parse()`를 사용할 수도 있다.
