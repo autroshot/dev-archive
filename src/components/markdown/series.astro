@@ -1,5 +1,4 @@
 ---
-import ExternalLink from '@components/external-link.astro';
 import { getEntries, type CollectionEntry } from 'astro:content';
 import { toSlug } from 'src/utils/string';
 import StyledBlock from './styled-block.astro';
@@ -14,7 +13,7 @@ async function getPostLinks(
   const seriesPosts = await getEntries(seriesPostsRef);
   const postLinks = seriesPosts.map((seriesPost) => {
     return {
-      href: `/blog/${toSlug(seriesPost.data.title)}`,
+      href: `/blog/${toSlug(seriesPost.data.title)}/`,
       text: seriesPost.data.title,
     };
   });
@@ -37,7 +36,7 @@ interface PostLink {
     {
       postLinks.map((postLink) => (
         <li>
-          <ExternalLink href={postLink.href}>{postLink.text}</ExternalLink>
+          <a href={postLink.href}>{postLink.text}</a>
         </li>
       ))
     }
