@@ -5,4 +5,5 @@ posts:
     'switch-statement',
     'copy-object',
     'explicit-type-conversion',
+    'optional-chaining',
   ]
