@@ -6,4 +6,5 @@ posts:
     'copy-object',
     'explicit-type-conversion',
     'optional-chaining',
+    'nullish-coalescing-operator',
   ]
