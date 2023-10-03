@@ -18,7 +18,12 @@ interface Props {
   ]}
 >
   <div>{type === 'older' ? '이전' : '최신'} 포스트</div>
-  <div class="mt-1 font-bold">
-    {type === 'older' ? `< ${postTitle}` : `${postTitle} >`}
+  <div
+    class:list={[
+      'mt-1 font-bold',
+      type === 'older' ? 'before:content-["<_"]' : 'after:content-["_>"]',
+    ]}
+  >
+    {postTitle}
   </div>
 </a>
