@@ -18,6 +18,8 @@
 
   ![series](https://github.com/autroshot/dev-archive/assets/95019875/c96d1009-cea6-4b9a-bcbf-73b87abd67e3)
 
+- 포스트 네비게이션 링크
+
 - Tailwind CSS 적용
 
 - 모바일 대응
