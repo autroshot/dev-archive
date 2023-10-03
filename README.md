@@ -1,6 +1,6 @@
 # Dev Archive
 
-개인 블로그입니다. [Astro](https://astro.build/)의 [공식 예시](https://github.com/withastro/astro/tree/main/examples/blog)를 기반으로 제작되었습니다.
+개인 블로그로 [Astro](https://astro.build/)의 [공식 예시](https://github.com/withastro/astro/tree/main/examples/blog)를 기반으로 제작되었습니다.
 
 ## 추가 기능
 
@@ -8,7 +8,7 @@
 
 - 초안: 개발에서만 표시되는 포스트
 
-- 권고(admonition): ![admonition](https://github.com/autroshot/dev-archive/assets/95019875/fcb09742-6532-470b-98be-80a7f8c5760b)
+- 권고(admonition): ![admonition](https://github.com/autroshot/dev-archive/assets/95019875/152f1e02-27fc-4919-9f95-044bbc84e88a)
 
 - 태그
 
