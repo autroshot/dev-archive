@@ -13,17 +13,21 @@ interface Props {
 <a
   href={`/blog/${toSlug(postTitle)}/`}
   class:list={[
-    'rounded-md border-2 p-3 hover:border-cyan-600',
-    type === 'older' ? 'col-start-1 text-left' : 'col-start-2 text-right',
+    'flex gap-x-3 rounded-md border-2 p-3 hover:border-cyan-600',
+    type === 'older' ? 'flex-row text-left' : 'flex-row-reverse text-right',
   ]}
 >
-  <div>{type === 'older' ? '이전' : '최신'} 포스트</div>
   <div
     class:list={[
-      'mt-1 font-bold',
-      type === 'older' ? 'before:content-["<_"]' : 'after:content-["_>"]',
+      'self-center text-2xl font-bold',
+      type === 'older' ? 'before:content-["<"]' : 'before:content-[">"]',
     ]}
   >
-    {postTitle}
+  </div>
+  <div class="flex flex-col gap-y-1">
+    <div>{type === 'older' ? '이전' : '최신'} 포스트</div>
+    <div class="font-bold">
+      {postTitle}
+    </div>
   </div>
 </a>
