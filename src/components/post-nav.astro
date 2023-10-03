@@ -2,24 +2,24 @@
 import type { CollectionEntry } from 'astro:content';
 import PostNavLink from './post-nav-link.astro';
 
-const { olderPostData, newerPostData, class: className } = Astro.props;
+const { olderPostTitle, newerPostTitle, class: className } = Astro.props;
 
 interface Props {
-  olderPostData?: CollectionEntry<'blog'>['data'];
-  newerPostData?: CollectionEntry<'blog'>['data'];
+  olderPostTitle?: CollectionEntry<'blog'>['data']['title'];
+  newerPostTitle?: CollectionEntry<'blog'>['data']['title'];
   class?: string;
 }
 ---
 
 <nav class:list={['grid grid-cols-2 gap-4', className]}>
   {
-    olderPostData ? (
-      <PostNavLink type="older" postTitle={olderPostData.title} />
+    olderPostTitle ? (
+      <PostNavLink type="older" postTitle={olderPostTitle} />
     ) : null
   }
   {
-    newerPostData ? (
-      <PostNavLink type="newer" postTitle={newerPostData.title} />
+    newerPostTitle ? (
+      <PostNavLink type="newer" postTitle={newerPostTitle} />
     ) : null
   }
 </nav>

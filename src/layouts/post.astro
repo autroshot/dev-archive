@@ -70,8 +70,8 @@ interface Props {
   {
     olderPostData || newerPostData ? (
       <PostNav
-        olderPostData={olderPostData}
-        newerPostData={newerPostData}
+        olderPostTitle={olderPostData?.title}
+        newerPostTitle={newerPostData?.title}
         class="mt-10"
       />
     ) : null
