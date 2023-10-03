@@ -19,22 +19,22 @@ export async function getStaticPaths() {
 
     return {
       params: { slug: toSlug(post.data.title) },
-      props: { post, series: foundSeries },
+      props: { currentPost: post, series: foundSeries },
     };
   });
 }
 
-const { post, series } = Astro.props;
-const { Content } = await post.render();
+const { currentPost, series } = Astro.props;
+const { Content } = await currentPost.render();
 
 interface Props {
-  post: CollectionEntry<'blog'>;
+  currentPost: CollectionEntry<'blog'>;
   series: CollectionEntry<'series'> | undefined;
 }
 ---
 
 <PostLayout
-  postData={structuredClone(post.data)}
+  postData={structuredClone(currentPost.data)}
   seriesData={structuredClone(series?.data)}
 >
   <Content />
