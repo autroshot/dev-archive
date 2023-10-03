@@ -45,7 +45,7 @@ interface Props {
 ---
 
 <PostLayout
-  postData={structuredClone(currentPost.data)}
+  currentPostData={structuredClone(currentPost.data)}
   olderPostData={structuredClone(olderPost?.data)}
   newerPostData={structuredClone(newerPost?.data)}
   seriesData={structuredClone(series?.data)}
