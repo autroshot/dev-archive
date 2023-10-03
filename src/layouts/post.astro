@@ -12,6 +12,8 @@ const { postData, seriesData } = Astro.props;
 
 interface Props {
   postData: CollectionEntry<'blog'>['data'];
+  olderPostData?: CollectionEntry<'blog'>['data'];
+  newerPostData?: CollectionEntry<'blog'>['data'];
   seriesData: CollectionEntry<'series'>['data'] | undefined;
 }
 ---
