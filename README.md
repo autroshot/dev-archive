@@ -8,7 +8,7 @@
 
 - 초안: 개발에서만 표시되는 포스트
 
-- 권고(admonition): 이미지
+- 권고(admonition): ![admonition](https://github.com/autroshot/dev-archive/assets/95019875/fcb09742-6532-470b-98be-80a7f8c5760b)
 
 - 태그
 
@@ -16,7 +16,7 @@
 
 - 시리즈: 연속된 포스트
 
-  이미지
+  ![series](https://github.com/autroshot/dev-archive/assets/95019875/c96d1009-cea6-4b9a-bcbf-73b87abd67e3)
 
 - Tailwind CSS 적용
 
