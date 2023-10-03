@@ -1,0 +1,37 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { toSlug } from 'src/utils/string';
+
+const { olderPostData, newerPostData, class: className } = Astro.props;
+
+interface Props {
+  olderPostData?: CollectionEntry<'blog'>['data'];
+  newerPostData?: CollectionEntry<'blog'>['data'];
+  class?: string;
+}
+---
+
+<nav class:list={['not-prose grid grid-cols-2 gap-4', className]}>
+  {
+    olderPostData ? (
+      <a
+        href={`/blog/${toSlug(olderPostData.title)}/`}
+        class="col-start-1 rounded-md border-2 p-3 text-left"
+      >
+        <div>이전 포스트</div>
+        <div class="mt-1 font-bold">{`< ${olderPostData.title}`}</div>
+      </a>
+    ) : null
+  }
+  {
+    newerPostData ? (
+      <a
+        href={`/blog/${toSlug(newerPostData.title)}/`}
+        class="col-start-2 rounded-md border-2 p-3 text-right"
+      >
+        <div>최신 포스트</div>
+        <div class="mt-1 font-bold">{`${newerPostData.title} >`}</div>
+      </a>
+    ) : null
+  }
+</nav>
