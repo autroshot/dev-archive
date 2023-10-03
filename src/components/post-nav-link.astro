@@ -1,0 +1,25 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { toSlug } from 'src/utils/string';
+
+const { type, postTitle } = Astro.props;
+
+interface Props {
+  type: 'older' | 'newer';
+  postTitle: CollectionEntry<'blog'>['data']['title'];
+}
+---
+
+<a
+  href={`/blog/${toSlug(postTitle)}/`}
+  class:list={[
+    'rounded-md border-2 p-3 hover:border-cyan-600',
+    `col-start-${type === 'older' ? 1 : 2}`,
+    `text-${type === 'older' ? 'left' : 'right'}`,
+  ]}
+>
+  <div>{type === 'older' ? '이전' : '최신'} 포스트</div>
+  <div class="mt-1 font-bold">
+    {type === 'older' ? `< ${postTitle}` : `${postTitle} >`}
+  </div>
+</a>
