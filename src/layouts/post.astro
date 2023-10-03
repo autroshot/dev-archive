@@ -3,57 +3,77 @@ import Draft from '@components/markdown/draft.astro';
 import Reference from '@components/markdown/reference.astro';
 import Series from '@components/markdown/series.astro';
 import Source from '@components/markdown/source.astro';
+import PostNav from '@components/post-nav.astro';
 import TagList from '@components/tag-list.astro';
 import type { CollectionEntry } from 'astro:content';
 import FormattedDate from '../components/formatted-date.astro';
 import BaseLayout from './base/index.astro';
 
-const { postData, seriesData } = Astro.props;
+const { currentPostData, olderPostData, newerPostData, seriesData } =
+  Astro.props;
 
 interface Props {
-  postData: CollectionEntry<'blog'>['data'];
+  currentPostData: CollectionEntry<'blog'>['data'];
+  olderPostData?: CollectionEntry<'blog'>['data'];
+  newerPostData?: CollectionEntry<'blog'>['data'];
   seriesData: CollectionEntry<'series'>['data'] | undefined;
 }
 ---
 
-<BaseLayout title={postData.title} description={postData.description}>
+<BaseLayout
+  title={currentPostData.title}
+  description={currentPostData.description}
+>
   <article class="prose prose-sm max-w-none lg:prose-base">
     <div class="not-prose mb-10 text-center">
       <h1 class="mb-4 font-noto-sans-kr text-4xl font-bold lg:text-5xl">
-        {postData.title}
+        {currentPostData.title}
       </h1>
       <div class="text-center">
         {
-          postData.tags ? (
-            <TagList texts={postData.tags} class="justify-center" />
+          currentPostData.tags ? (
+            <TagList texts={currentPostData.tags} class="justify-center" />
           ) : null
         }
       </div>
       <div class="mb-2 mt-2 text-gray-500">
-        <FormattedDate date={postData.publishedDate} />
+        <FormattedDate date={currentPostData.publishedDate} />
         {
-          postData.updatedDate && (
+          currentPostData.updatedDate && (
             <div class="italic">
-              Last updated on <FormattedDate date={postData.updatedDate} />
+              Last updated on{' '}
+              <FormattedDate date={currentPostData.updatedDate} />
             </div>
           )
         }
       </div>
       <hr />
     </div>
-    {postData.isDraft ? <Draft /> : null}
+    {currentPostData.isDraft ? <Draft /> : null}
     {seriesData ? <Series seriesData={seriesData} /> : null}
     {
-      postData.source ? (
-        <Source name={postData.source.name} url={postData.source.url} />
+      currentPostData.source ? (
+        <Source
+          name={currentPostData.source.name}
+          url={currentPostData.source.url}
+        />
       ) : null
     }
-    <p>{postData.description}</p>
+    <p>{currentPostData.description}</p>
     <slot />
     {
-      postData.references && postData.references.length !== 0 ? (
-        <Reference references={postData.references} />
+      currentPostData.references && currentPostData.references.length !== 0 ? (
+        <Reference references={currentPostData.references} />
       ) : null
     }
   </article>
+  {
+    olderPostData || newerPostData ? (
+      <PostNav
+        olderPostTitle={olderPostData?.title}
+        newerPostTitle={newerPostData?.title}
+        class="mt-10"
+      />
+    ) : null
+  }
 </BaseLayout>

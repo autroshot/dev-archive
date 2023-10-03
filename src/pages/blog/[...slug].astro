@@ -12,29 +12,42 @@ export async function getStaticPaths() {
   });
   const series = await getCollection('series');
 
-  return posts.map((post) => {
+  const sortedPosts = posts.sort(
+    (a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf(),
+  );
+
+  return sortedPosts.map((post, index, posts) => {
     const foundSeries = series.find((item) =>
       item.data.posts.some((seriesPost) => seriesPost.slug === post.slug),
     );
 
     return {
       params: { slug: toSlug(post.data.title) },
-      props: { post, series: foundSeries },
+      props: {
+        currentPost: post,
+        newerPost: posts[index - 1],
+        olderPost: posts[index + 1],
+        series: foundSeries,
+      },
     };
   });
 }
 
-const { post, series } = Astro.props;
-const { Content } = await post.render();
+const { currentPost, olderPost, newerPost, series } = Astro.props;
+const { Content } = await currentPost.render();
 
 interface Props {
-  post: CollectionEntry<'blog'>;
+  currentPost: CollectionEntry<'blog'>;
+  olderPost?: CollectionEntry<'blog'>;
+  newerPost?: CollectionEntry<'blog'>;
   series: CollectionEntry<'series'> | undefined;
 }
 ---
 
 <PostLayout
-  postData={structuredClone(post.data)}
+  currentPostData={structuredClone(currentPost.data)}
+  olderPostData={structuredClone(olderPost?.data)}
+  newerPostData={structuredClone(newerPost?.data)}
   seriesData={structuredClone(series?.data)}
 >
   <Content />
