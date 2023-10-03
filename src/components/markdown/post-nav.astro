@@ -16,7 +16,7 @@ interface Props {
     olderPostData ? (
       <a
         href={`/blog/${toSlug(olderPostData.title)}/`}
-        class="col-start-1 rounded-md border-2 p-3 text-left"
+        class="col-start-1 rounded-md border-2 p-3 text-left hover:border-cyan-600"
       >
         <div>이전 포스트</div>
         <div class="mt-1 font-bold">{`< ${olderPostData.title}`}</div>
@@ -27,7 +27,7 @@ interface Props {
     newerPostData ? (
       <a
         href={`/blog/${toSlug(newerPostData.title)}/`}
-        class="col-start-2 rounded-md border-2 p-3 text-right"
+        class="col-start-2 rounded-md border-2 p-3 text-right hover:border-cyan-600"
       >
         <div>최신 포스트</div>
         <div class="mt-1 font-bold">{`${newerPostData.title} >`}</div>
