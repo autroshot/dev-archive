@@ -14,8 +14,7 @@ interface Props {
   href={`/blog/${toSlug(postTitle)}/`}
   class:list={[
     'rounded-md border-2 p-3 hover:border-cyan-600',
-    `col-start-${type === 'older' ? 1 : 2}`,
-    `text-${type === 'older' ? 'left' : 'right'}`,
+    type === 'older' ? 'col-start-1 text-left' : 'col-start-2 text-right',
   ]}
 >
   <div>{type === 'older' ? '이전' : '최신'} 포스트</div>
