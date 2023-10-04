@@ -10,15 +10,15 @@ export async function getStaticPaths() {
     }
     return true;
   });
-  const series = await getCollection('series');
+  const serieses = await getCollection('series');
 
   const sortedPosts = posts.sort(
     (a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf(),
   );
 
   return sortedPosts.map((post, index, posts) => {
-    const foundSeries = series.find((item) =>
-      item.data.posts.some((seriesPost) => seriesPost.slug === post.slug),
+    const foundSeries = serieses.find((series) =>
+      series.data.posts.some((seriesPost) => seriesPost.slug === post.slug),
     );
 
     return {
