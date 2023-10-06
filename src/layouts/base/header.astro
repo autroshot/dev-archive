@@ -6,7 +6,9 @@ import { SITE_TITLE } from '../../consts';
 import HeaderLink from './header-link.astro';
 ---
 
-<header class="bg-white px-5 shadow-md shadow-gray-200">
+<header
+  class="bg-white px-5 shadow-md shadow-gray-200 dark:bg-gray-900 dark:shadow-gray-700"
+>
   <nav class="flex items-center justify-between">
     <h2 class="font-bold"><a href="/">{SITE_TITLE}</a></h2>
     <div class="internal-links">
