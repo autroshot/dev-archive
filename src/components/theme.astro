@@ -39,7 +39,15 @@
 </style>
 
 <script is:inline>
-const theme = getTheme();
+const theme = (() => {
+  if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+    return localStorage.getItem('theme');
+  }
+  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    return 'dark';
+  }
+  return 'light';
+})();
 
 if (theme === 'light') {
   document.documentElement.classList.remove('dark');
@@ -52,16 +60,6 @@ window.localStorage.setItem('theme', theme);
 document
   .getElementById('themeToggle')
   .addEventListener('click', handleToggleClick);
-
-function getTheme() {
-  if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-    return localStorage.getItem('theme');
-  }
-  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    return 'dark';
-  }
-  return 'light';
-}
 
 function handleToggleClick() {
   const element = document.documentElement;
