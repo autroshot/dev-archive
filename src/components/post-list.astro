@@ -22,12 +22,14 @@ type Props = Record<string, never>;
     sortedPosts.map((post) => (
       <li>
         <div class="flex flex-col gap-1">
-          <a
-            href={`/blog/${toSlug(post.data.title)}/`}
-            class="font-noto-sans-kr text-2xl font-bold hover:text-cyan-600"
-          >
-            {post.data.title}
-          </a>
+          <div>
+            <a
+              href={`/blog/${toSlug(post.data.title)}/`}
+              class="font-noto-sans-kr text-2xl font-bold hover:text-cyan-600"
+            >
+              {post.data.title}
+            </a>
+          </div>
           {post.data.tags ? <TagList texts={post.data.tags} /> : null}
           <FormattedDate date={post.data.publishedDate} />
         </div>
