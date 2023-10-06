@@ -3,9 +3,10 @@ import Icon from 'astro-icon';
 const { title, iconName, color = 'gray' } = Astro.props;
 
 const COLORS: Colors = {
-  gray: 'border-gray-300 bg-gray-100',
-  yellow: 'border-yellow-300 bg-yellow-50',
-  cyan: 'border-cyan-300 bg-cyan-50',
+  gray: 'border-gray-300 bg-gray-100 dark:border-gray-400 dark:bg-gray-800',
+  yellow:
+    'border-yellow-300 bg-yellow-50 dark:border-yellow-500 dark:bg-yellow-900',
+  cyan: 'border-cyan-300 bg-cyan-50 dark:border-cyan-500 dark:bg-cyan-950',
 };
 
 export interface Props {

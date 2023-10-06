@@ -24,7 +24,7 @@ interface Props {
   title={currentPostData.title}
   description={currentPostData.description}
 >
-  <article class="prose prose-sm max-w-none lg:prose-base">
+  <article class="prose prose-sm max-w-none dark:prose-invert lg:prose-base">
     <div class="not-prose mb-10 text-center">
       <h1 class="mb-4 font-noto-sans-kr text-4xl font-bold lg:text-5xl">
         {currentPostData.title}
@@ -36,7 +36,7 @@ interface Props {
           ) : null
         }
       </div>
-      <div class="mb-2 mt-2 text-gray-500">
+      <div class="mb-2 mt-2">
         <FormattedDate date={currentPostData.publishedDate} />
         {
           currentPostData.updatedDate && (

@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
@@ -68,6 +69,25 @@ module.exports = {
             fontSize: '17px',
             code: {
               fontSize: '17px',
+            },
+          },
+        },
+        invert: {
+          css: {
+            a: {
+              color: theme('colors.cyan.500'),
+            },
+            'ol > li::marker': {
+              color: theme('colors.gray.400'),
+            },
+            'ul > li::marker': {
+              color: theme('colors.gray.500'),
+            },
+            blockquote: {
+              borderLeftColor: theme('colors.gray.600'),
+            },
+            code: {
+              backgroundColor: theme('colors.gray.700'),
             },
           },
         },

@@ -14,7 +14,7 @@ interface Props {
 <a
   href={`/blog/${toSlug(postTitle)}/`}
   class:list={[
-    'flex gap-x-3 rounded-md border-2 p-3 hover:border-cyan-600',
+    'flex gap-x-3 rounded-md border-2 border-gray-200 p-3 hover:border-cyan-600 dark:border-gray-600 hover:dark:border-cyan-600',
     type === 'older' ? 'flex-row text-left' : 'flex-row-reverse text-right',
     className,
   ]}
