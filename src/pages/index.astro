@@ -4,7 +4,11 @@ import BaseLayout from '@layouts/base/index.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 ---
 
-<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<BaseLayout
+  title={SITE_TITLE}
+  description={SITE_DESCRIPTION}
+  class="lg:max-w-screen-md"
+>
   <section>
     <h1 class="text-xl">👋 안녕하세요!</h1>
     <p class="mt-1 text-base">

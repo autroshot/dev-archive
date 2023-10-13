@@ -6,9 +6,10 @@ import Header from '@layouts/base/header.astro';
 interface Props {
   title: string;
   description: string;
+  class?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, class: className } = Astro.props;
 ---
 
 <!doctype html>
@@ -20,7 +21,7 @@ const { title, description } = Astro.props;
     class="bg-white bg-gradient-to-b from-gray-100 to-white bg-[length:100%_600px] bg-no-repeat font-nanum-gothic text-gray-700 dark:bg-gray-900 dark:from-gray-800 dark:to-gray-900 dark:text-gray-300"
   >
     <Header />
-    <main class="mx-auto max-w-full px-8 py-8 lg:max-w-screen-lg lg:px-0">
+    <main class:list={['mx-auto max-w-full px-8 py-8 lg:px-0', className]}>
       <slot />
     </main>
     <Footer />
