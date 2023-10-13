@@ -4,6 +4,7 @@ description: "Astro 기반 블로그에서 Astro의 컨텐츠 컬렉션을 이�
 publishedDate: "2023-10-13"
 tags: ["Astro"]
 ---
+import Admonition from '@components/markdown/admonition.astro'
 
 ## 시리즈 기능이란?
 
@@ -20,9 +21,11 @@ tags: ["Astro"]
 
 관계형 DB를 설계하는 문제와 비슷하게 보인다. 시리즈와 포스트의 관계를 설정해야 하기 때문이다.
 
-[Astro](https://astro.build/)의 [콘텐츠 컬렉션](https://docs.astro.build/ko/guides/content-collections/#defining-a-collection-schema)은 콘텐츠 관리에 최적화된 기능으로 포스트, 저자 등의 정리할 때 사용한다. 컬렉션을 RDB의 테이블이라고 생각할 수 있다.
+구현 방법은 각 포스트가 시리즈 데이터를 갖는 방식과 시리즈를 하나의 콘텐츠 컬렉션에 모아 두는 방식이 있을 것이다. 후자의 방식이 관심사가 분리되고 시리즈 확장이 쉬워진다.
 
-우리는 시리즈를 하나의 콘텐츠 컬렉션에 모아 둘 것이다. 각 포스트가 시리즈 데이터를 갖는 방식과 비교하면, 관심사가 분리되고 시리즈 확장이 쉬워진다.
+<Admonition title='콘텐츠 컬렉션'>
+[Astro](https://astro.build/)의 [콘텐츠 컬렉션](https://docs.astro.build/ko/guides/content-collections/#defining-a-collection-schema)은 콘텐츠 관리에 최적화된 기능으로 포스트, 저자와 같은 콘텐츠를 정리할 때 사용한다. 컬렉션을 RDB의 테이블이라고 생각할 수 있다.
+</Admonition>
 
 ## 구현
 
