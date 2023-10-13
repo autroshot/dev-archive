@@ -1,18 +1,154 @@
 ---
 title: "Astro 블로그에 시리즈 기능 추가하기"
-description: "Astro 기반 블로그에서 Astro의 콘텐츠 컬렉션을 이용하여 시리즈 기능을 추가했던 과정을 소개한다."
-publishedDate: "2023-08-31"
-source:
-  name: "MDN - Populating the page: how browsers work"
-  url: "https://developer.mozilla.org/en-US/docs/Web/Performance/How_browsers_work"
-tags: ["번역", "브라우저"]
-isDraft: true
+description: "Astro 기반 블로그에서 Astro의 컨텐츠 컬렉션을 이용하여 시리즈 기능을 추가했던 과정을 소개한다."
+publishedDate: "2023-10-13"
+tags: ["Astro"]
 ---
 
-시리즈 기능이란? 상용 블로그의 예시, 필요한 기능
+## 시리즈 기능이란?
 
-필요한 Astro 버전
+다음은 개발 블로그로 많이 사용하는 [velog](https://velog.io/)에서 볼 수 있는 시리즈 기능이다.
 
-구현 과정
+![velog의 시리즈](@assets/add-series-in-astro-blog/velog-series.png)
 
-결과
+어떤 주제에 해당하는 일련의 포스트들이 나열된 것을 볼 수 있다. 시리즈는 하나의 포스트에 담기에는 글이 너무 길고 여러 포스트로 나누고 싶을 때 유용하다.
+
+시리즈 기능을 정의하자면, 여러 포스트를 하나의 순서로 묶는 것이다. 이를 좀 더 구체적으로 설명하면 다음과 같다.
+
+- 시리즈에는 제목과 포스트 목록이 포함된다.
+- 각 포스트는 자신이 속한 시리즈를 알아야 한다.
+
+관계형 DB를 설계하는 문제와 비슷하게 보인다. 시리즈와 포스트의 관계를 설정해야 하기 때문이다.
+
+[Astro](https://astro.build/)의 [콘텐츠 컬렉션](https://docs.astro.build/ko/guides/content-collections/#defining-a-collection-schema)은 콘텐츠 관리에 최적화된 기능으로 포스트, 저자 등의 정리할 때 사용한다. 컬렉션을 RDB의 테이블이라고 생각할 수 있다.
+
+우리는 시리즈를 하나의 콘텐츠 컬렉션에 모아 둘 것이다. 각 포스트가 시리즈 데이터를 갖는 방식과 비교하면, 관심사가 분리되고 시리즈 확장이 쉬워진다.
+
+## 구현
+
+먼저 전체 스키마를 다음과 같이 정의한다.
+
+```ts
+// content/config.ts
+import { defineCollection, reference, z } from 'astro:content';
+
+const blog = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+  }),
+});
+
+const series = defineCollection({
+  type: 'data',
+  schema: z.object({
+    title: z.string(),
+    posts: z.array(reference('blog')),
+  }),
+});
+
+export const collections = { blog, series };
+```
+
+시리즈의 `posts`가 `reference('blog')`의 배열로 정의된 것을 주목하자. `reference('blog')`는 포스트 컬렉션을 참조한다는 것을 의미한다. 따라서 `z.array(reference('blog'))`는 여러 개의 포스트 참조로 해석할 수 있다.
+
+시리즈 파일은 json이나 yaml 포맷을 사용할 수 있는데, 나는 yaml을 사용하였다.
+
+```yaml
+# content/series/my-awesome-series.yaml
+title: 나의 멋진 시리즈
+posts:
+  - my-awesome-post-1
+  - my-awesome-post-2
+  - my-awesome-post-3
+  - my-awesome-post-4
+  - my-awesome-post-5
+```
+
+이제 포스트 페이지에서 프롭으로 시리즈를 전달한다.
+
+```ts
+// pages/blog/[...slug].astro
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import PostLayout from 'layouts/post.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const serieses = await getCollection('series');
+
+  return posts.map((post) => {
+    const foundSeries = serieses.find((series) =>
+      series.data.posts.some((seriesPost) => seriesPost.slug === post.slug),
+    );
+
+    return {
+      params: { slug: post.data.title },
+      props: {
+        post: post,
+        series: foundSeries,
+      },
+    };
+  });
+}
+
+const { post, series } = Astro.props;
+const { Content } = await post.render();
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  series: CollectionEntry<'series'> | undefined;
+}
+---
+
+<PostLayout
+  postData={structuredClone(post.data)}
+  seriesData={structuredClone(series?.data)}
+>
+  <Content />
+</PostLayout>
+```
+
+`seriesData`는 프롭 드릴링을 통해 시리즈를 표시하는 컴포넌트까지 전달된다. 전달된 `seriesData`의 `posts`에는 앞서 말했듯이 포스트 참조의 배열이 들어 있다. 이 참조 배열을 `getEntries`와 같이 사용하면 실제 컨텐츠를 가져올 수 있다.
+
+```tsx
+// components/series.astro
+---
+import { getEntries, type CollectionEntry } from 'astro:content';
+
+const { seriesData } = Astro.props;
+const seriesPosts = await getEntries(seriesData.posts);
+
+interface Props {
+  seriesData: CollectionEntry<'series'>['data'];
+}
+---
+
+<ol>
+  {
+    seriesPosts.map((seriesPost) => (
+      <li>
+        <a href={'/blog/' + seriesPost.data.title}>{seriesPost.data.title}</a>
+      </li>
+    ))
+  }
+</ol>
+```
+
+실제 구현 과정이 궁금하다면 [PR](https://github.com/autroshot/dev-archive/pull/38)에서 확인할 수 있다.
+
+## 결과
+
+내 블로그에서 실제로 사용하는 모습은 다음과 같다.
+
+![내 블로그의 시리즈](@assets/add-series-in-astro-blog/my-series.png)
+
+로직은 거의 비슷하며 스타일만 입혔을 뿐이다.
+
+## 추가 기능
+
+추가적으로 구현할 만한 기능은 다음과 같다.
+
+- 중첩 시리즈: 시리즈 내부에 시리즈를 넣을 수 있다.
+- 유효성 검사: 포스트가 하나의 시리즈에만 속하는지 확인한다.
+
