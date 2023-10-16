@@ -2,7 +2,7 @@
 import Icon from 'astro-icon';
 ---
 
-<button id="themeToggle" aria-label="어두운 모드와 밝은 모드 전환하기">
+<button id="themeButton" aria-label="어두운 모드와 밝은 모드 전환하기">
   <Icon name="sun" class="block w-8 dark:hidden" />
   <Icon name="moon" class="hidden w-8 dark:block" />
 </button>
@@ -19,7 +19,7 @@ if (theme === 'light') {
 window.localStorage.setItem('theme', theme);
 
 document
-  .getElementById('themeToggle')
+  .getElementById('themeButton')
   .addEventListener('click', handleToggleClick);
 
 function handleToggleClick() {
