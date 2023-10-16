@@ -8,15 +8,7 @@ import Icon from 'astro-icon';
 </button>
 
 <script is:inline>
-const theme = (() => {
-  if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-    return localStorage.getItem('theme');
-  }
-  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    return 'dark';
-  }
-  return 'light';
-})();
+const theme = getTheme();
 
 if (theme === 'light') {
   document.documentElement.classList.remove('dark');
@@ -36,5 +28,15 @@ function handleToggleClick() {
 
   const isDark = element.classList.contains('dark');
   localStorage.setItem('theme', isDark ? 'dark' : 'light');
+}
+
+function getTheme() {
+  if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+    return localStorage.getItem('theme');
+  }
+  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    return 'dark';
+  }
+  return 'light';
 }
 </script>
