@@ -1,0 +1,99 @@
+---
+title: "React의 상태는 왜 선언적인가"
+description: "React가 상태를 사용하여 어떻게 선언형 프로그래밍을 구현하는지 알아본다."
+publishedDate: "2023-11-16"
+tags: ["React", "상태", "선언형 프로그래밍"]
+---
+
+## 필요한 배경지식
+
+흔히 명령형과 선언형 프로그래밍를 비교하며 정의한다. 두 방식에 대한 자세한 정의나 차이는 다른 훌륭한 글이 많으니 여기서는 자세히 다루지 않겠다. 개인적으로 이 [포스트](https://www.linkedin.com/pulse/imperative-vs-declarative-programming-javascript-yehuda-margolis)가 좋았다.
+
+그럼에도 한 줄로 요약하자면, 명령형 프로그래밍은 **How(어떻게)**&ZeroWidthSpace;에 집중하고 선언형 프로그래밍은 **What(무엇)**&ZeroWidthSpace;에 집중한다.
+
+또한 React의 상태(state)에 대해 잘 모른다면 [공식 문서](https://ko.react.dev/learn/state-a-components-memory)를 참고하길 바란다.
+
+## 명령형 핸들러와 선언형 핸들러
+
+이제 예시를 통해 React의 상태가 왜 선언적인지 알아보겠다. 버튼을 누르면 숫자가 증가하는 카운터를 HTML과 JavaScript, 그리고 React로 구현할 것이다. 두 구현을 비교하며 상태의 역할을 알아보자.
+
+다음은 HTML과 JavaScript로 구현한 예시이다.
+
+```html
+<div id="counter-display">0</div>
+<button id="counter-button">+1 버튼</button>
+
+<script>
+    const counterDisplay = document.getElementById('counter-display');
+    const counterButton = document.getElementById('counter-button');
+
+    counterButton.onclick = handleClick;
+    function handleClick() {
+        counterDisplay.textContent = Number(counterDisplay.textContent) + 1;
+    }
+</script>
+```
+
+이를 React로 구현하면 다음과 같다.
+
+```jsx
+import { useState } from 'react';
+
+export default function Counter() {
+    const [count, setCount] = useState(0);
+
+    function handleClick() {
+        setCount(count + 1);
+    }
+
+    return (
+        <>
+            <div>{count}</div>
+            <button onClick={handleClick}>+1 버튼</button>
+        </>
+    );
+}
+```
+
+버튼을 누르면 숫자가 증가하는 카운터라는 점은 동일하다. 구현 방식이 다를 뿐이다.
+
+차이를 정확히 파악하기 위해 핸들러만 가져와 비교해 보겠다.
+
+```js
+// JavaScript
+function handleClick() {
+    counterDisplay.textContent = Number(counterDisplay.textContent) + 1;
+}
+```
+
+```jsx
+// React
+function handleClick() {
+    setCount(count + 1);
+}
+```
+
+두 클릭 핸들러의 내부는 무언가에 1을 더한다는 점에서 언뜻 비슷해 보인다. 하지만 다음과 같은 차이가 있다.
+
+- UI 변경 로직: JavaScript에서는 요소의 텍스트 값에 1을 더하고 있다. UI가 **어떻게** 변경되는지를 명시한다. React에서는 `setCount` 함수를 이용해 `count`에 1을 더한다고 **선언**한다. 핸들러는 UI가 어떻게 변할지 모른다. 상태만 변경할 뿐이다.
+- 종속성: JavaScript의 핸들러는 `counterDisplay` 요소에 종속된다. 요소의 구체적인 구현이 변경되면 핸들러도 수정이 필요할 수 있다. 반면 React의 핸들러는 요소의 존재 자체를 모르기 때문에, 요소에 변화가 생겨도 핸들러의 로직은 그대로다.
+
+이렇게 React에서는 사용자의 상호 작용에 따른 UI 변화를 하나하나 설명하는 대신, 컴포넌트의 상태 변화만 선언하면 된다. 리렌더링이 트리거되고 React가 화면을 적절하게 업데이트할 것이다.
+
+선언형 프로그래밍은 관심사 분리와도 자연스럽게 연결된다. 상태 덕분에 UI 변경 트리거와 UI 변경 로직이라는 두 관심사가 분리된다. 상태가 없다면 핸들러 안에 UI 변경 로직이 포함될 것이다. UI 변경 트리거와 로직이 상태라는 중재자를 통해 느슨하게 연결된다.
+
+## 관심사 분리는 왜 필요한가
+
+사실 예시와 같은 간단한 앱에서는 React가 없어도 괜찮다. 하지만 앱이 복잡해지거나 상호 작용이 많아질수록 상태를 이용한 관심사 분리는 큰 힘을 발휘한다.
+
+![복잡한 폼](@assets/why-is-react-state-declarative/complex-form.png)
+
+이 폼에는 6개의 입력과 하나의 제출 버튼이 있다. 모든 입력에 값이 있어야만 버튼이 활성화된다고 가정해 보겠다. 이때 관심사 분리가 안 되어 입력의 핸들러와 버튼이 강하게 연결되어 있다면, 버튼 활성화 로직을 변경할 때마다 6개 핸들러의 코드를 모두 수정해야 할 것이다. 반면 React로 구현되어 트리거와 로직이 분리되었다면, 반복적인 수정 작업에서 해방된다.
+
+더 나아가 상태 갱신 로직이 복잡해진다면 [리듀서(reducer)](https://ko.react.dev/learn/extracting-state-logic-into-a-reducer)를 고려할 수 있다. 리듀서는 상태 갱신 로직마저도 선언적으로 만들고 로직의 분리를 도와준다.
+
+## 맺으며
+
+여기서 언급한 상태와 리듀서 외에도 React에서는 JSX, 커스텀 훅(hook) 모두 선언형 프로그래밍을 구현한다고 볼 수 있다. 해당 내용을 다룬 포스트가 많으니 한번 찾아보는 것도 좋다.
+
+이번 글을 작성하며 React의 선언적 측면이나 관심사 분리에 대해 깊게 생각해 볼 수 있었다. 이제 코드를 보는 새로운 관점을 얻은 느낌이다. 다른 기술을 배우거나 프로그래밍을 하는 과정에서 선언적 프로그래밍을 고려하면 많은 도움이 될 것이다.
