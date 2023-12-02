@@ -1,8 +1,8 @@
 title: JavaScript 치트 시트
 posts:
-  - array-and-method
-  - switch-statement
-  - copy-object
-  - explicit-type-conversion
-  - optional-chaining
-  - nullish-coalescing-operator
+  - 배열과-메서드
+  - switch문
+  - 객체-복사하기
+  - 명시적-형-변환
+  - 선택적-연쇄
+  - 널-같은-값-병합-연산자
