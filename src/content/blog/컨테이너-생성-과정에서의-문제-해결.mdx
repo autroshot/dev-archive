@@ -1,0 +1,163 @@
+---
+title: "컨테이너 생성 과정에서의 문제 해결"
+description: "컨테이너 생성 과정에서 마주친 문제와 그 해결 과정을 정리했다."
+publishedDate: "2023-12-24"
+tags: ["Docker", "문제 해결"]
+references: ["https://blog.naver.com/alice_k106/220278762795"]
+---
+
+프로그래머스 데브코스 과정에서 Docker 컨테이너를 생성하는 방법을 배웠다. 강의에서 알려준 명령을 그대로 사용하는 대신, 공식 문서를 찾아보고 문서에서 알려주는 명령을 사용했다. 하지만 공식 문서대로 만든 컨테이너에 앱을 통해 접속하면 문제가 발생하였다.
+
+## 공식 문서의 명령 사용하기
+
+다음은 데브코스에서 다른 학생분이 공유해 주신 문제 해결이다.
+
+![학습소통에-공유된-다른-학생의-문제-해결](@assets/컨테이너-생성-과정에서의-문제-해결/학습소통에-공유된-다른-학생의-문제-해결.png)
+
+이처럼 강의나 블로그에 나오는 구체적인 명령이나 내용은 최신이 아니거나 잘못된 정보일 수 있다. 따라서 가장 최신이고 공신력 있는 공식 문서를 확인하는 것이 좋다.
+
+[MariaDB 공식 문서](https://mariadb.com/kb/en/mariadb-command-line-client/)에서는 다음 명령을 사용한다.
+
+```bash
+mariadb db_name
+```
+
+또는 다음 명령도 있다.
+
+```bash
+mariadb --user=user_name --password=your_password db_name
+```
+
+## 오류 발생
+
+강의에서 알려준 컨테이너 생성 명령은 다음과 같다.
+
+```bash
+docker run —name mariadb -d -p 3306:3306 —restart=always -e MYSQL_ROOT_PASSWORD=root mariadb
+```
+
+Docker Hub의 [MariaDB 공식 이미지 문서](https://hub.docker.com/_/mariadb)에서는 다음 명령을 사용한다.
+
+```bash
+docker run --detach --name some-mariadb --env MARIADB_ROOT_PASSWORD=my-secret-pw  mariadb:latest
+```
+
+위 명령으로 컨테이너를 생성한 다음, 앱을 실행하여 MariaDB에 접속하면 다음과 같은 오류가 뜨며 종료되어 버린다.
+
+```bash
+node:events:492
+      throw er; // Unhandled 'error' event
+      ^
+
+AggregateError
+    at internalConnectMultiple (node:net:1114:18)
+    at afterConnectMultiple (node:net:1667:5)
+    --------------------
+    at Protocol._enqueue (C:\workspace\programmers\web-start\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at Protocol.handshake (C:\workspace\programmers\web-start\node_modules\mysql\lib\protocol\Protocol.js:51:23)
+    at Connection.connect (C:\workspace\programmers\web-start\node_modules\mysql\lib\Connection.js:116:18)
+    at Object.<anonymous> (C:\workspace\programmers\web-start\index.js:6:9)
+    at Module._compile (node:internal/modules/cjs/loader:1376:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1435:10)
+    at Module.load (node:internal/modules/cjs/loader:1207:32)
+    at Module._load (node:internal/modules/cjs/loader:1023:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:135:12)      
+    at node:internal/main/run_main_module:28:49
+Emitted 'error' event on Connection instance at:
+    at Connection._handleProtocolError (C:\workspace\programmers\web-start\node_modules\mysql\lib\Connection.js:423:8)
+    at Protocol.emit (node:events:514:28)
+    at Protocol._delegateError (C:\workspace\programmers\web-start\node_modules\mysql\lib\protocol\Protocol.js:398:10)
+    at Handshake.<anonymous> (C:\workspace\programmers\web-start\node_modules\mysql\lib\protocol\Protocol.js:153:12)
+    at Handshake.emit (node:events:514:28)
+    at Sequence.end (C:\workspace\programmers\web-start\node_modules\mysql\lib\protocol\sequences\Sequence.js:78:12)
+    at Protocol.handleNetworkError (C:\workspace\programmers\web-start\node_modules\mysql\lib\protocol\Protocol.js:369:14)
+    at Connection._handleNetworkError (C:\workspace\programmers\web-start\node_modules\mysql\lib\Connection.js:418:18)
+    at Socket.emit (node:events:514:28)
+    at emitErrorNT (node:internal/streams/destroy:151:8) {
+  code: 'ECONNREFUSED',
+  fatal: true,
+  [errors]: [
+    Error: connect ECONNREFUSED ::1:3306
+        at createConnectionError (node:net:1634:14)
+        at afterConnectMultiple (node:net:1664:40) {
+      errno: -4078,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '::1',
+      port: 3306
+    },
+    Error: connect ECONNREFUSED 127.0.0.1:3306
+        at createConnectionError (node:net:1634:14)
+        at afterConnectMultiple (node:net:1664:40) {
+      errno: -4078,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 3306
+    }
+  ]
+}
+```
+
+## 문제 해결
+
+사실 강의에서 알려준 명령을 사용하면 오류가 생기지 않는다. 하지만 어떤 이유로 오류가 발생하는지 궁금했다.
+
+```bash
+# 강의
+docker run —name mariadb -d -p 3306:3306 —restart=always -e MYSQL_ROOT_PASSWORD=root mariadb
+```
+
+```bash
+# 공식 문서
+docker run --detach --name some-mariadb --env MARIADB_ROOT_PASSWORD=my-secret-pw  mariadb:latest
+```
+
+결론부터 말하자면, `-p` 옵션을 사용하지 않아 앱에서 접속할 수 없었던 것이다.
+
+문제의 원인을 파악하기 위해서는, 명령의 각 옵션이 어떤 역할을 하는지 알 필요가 있다.
+
+- `--name`: 컨테이너 이름
+- `--detach`, `-d`: 컨테이너를 백그라운드에서 실행. 이 옵션을 넣지 않으면 터미널을 종료할 때 컨테이너도 같이 종료됨.
+- `--env`, `-e`: 컨테이너의 환경 변수
+- `--restart`: Docker가 재시작될 때 컨테이너도 자동으로 재시작됨. Docker가 사고로 종료되었을 때를 위한 옵션 같다.
+
+- `--publish`, `-p`: 원인은 이 옵션 때문이다!
+
+![docker-run-publish](@assets/컨테이너-생성-과정에서의-문제-해결/docker-run의-publish-옵션.png)
+
+`-p` 뒤에 오는 값은 포트 번호를 의미한다.
+
+```bash
+-p <호스트의 포트 번호>:<컨테이너의 포트 번호>
+```
+
+예를 들어 `-p 80:3306`은 다음을 의미한다.
+
+![호스트와-컨테이너의-포트](@assets/컨테이너-생성-과정에서의-문제-해결/호스트와-컨테이너의-포트.png)
+
+이 멋진 그림의 출처는 [이곳](https://blog.naver.com/alice_k106/220278762795)이다. Docker의 포트 개념에 대한 설명이 잘 되어있으므로 참고 바란다.
+
+강의에서는 편의상 `-p 3306:3306`를 사용했지만 앞의 번호는 다른 번호를 사용해도 된다. 다만 앱의 포트 번호를 해당 번호로 변경해야 하는 것을 잊지 말아야 한다.
+
+```bash
+docker run --detach --publish 80:3306 --name <some-mariadb> --env MARIADB_ROOT_PASSWORD=<my-secret-pw> mariadb:latest
+```
+
+```js
+const mariadb = require('mysql');
+
+const conn = mariadb.createConnection({
+    host: 'localhost',
+    port: 80, // 3306에서 80으로 변경해야 한다.
+    user: 'root',
+    password: '1234',
+    database: 'Tennis',
+});
+
+module.exports = conn;
+```
+
+나중에 알았지만 Docker Desktop 프로그램에서 컨테이너 목록만 봐도, 문제의 원인을 짐작할 수 있다.
+
+![컨테이너-목록](@assets/컨테이너-생성-과정에서의-문제-해결/컨테이너-목록.png)
