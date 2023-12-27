@@ -77,4 +77,25 @@ interface Props {
       />
     ) : null
   }
+  <div id="utterances-container"></div>
+
+  <script>
+    const script = document.createElement('script');
+    const container = document.querySelector('#utterances-container');
+    const siteTheme = localStorage.getItem('theme');
+    const theme = siteTheme === 'light' ? 'github-light' : 'github-dark';
+
+    Object.entries({
+      src: 'https://utteranc.es/client.js',
+      repo: 'autroshot/dev-archive',
+      'issue-term': 'title',
+      label: 'comments', // omit this line, if you don't need label
+      theme,
+      crossorigin: 'anonymous',
+    }).forEach(([key, value]) => {
+      script.setAttribute(key, value);
+    });
+
+    container?.appendChild(script);
+  </script>
 </BaseLayout>
