@@ -28,7 +28,7 @@ const astroExpressiveCodeOptions = {
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://www.dev-archive.com/',
   integrations: [
     sitemap(),
     astroExpressiveCode(astroExpressiveCodeOptions),
