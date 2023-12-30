@@ -24,6 +24,8 @@
 
   ![포스트 네비게이션 링크](https://github.com/autroshot/dev-archive/assets/95019875/d0d6df48-b01d-48af-a7bd-4d5b3f3aef66)
 
+- 댓글: [giscus](https://giscus.app/) 사용
+
 - Tailwind CSS 적용
 
 - 어두운 모드 대응
