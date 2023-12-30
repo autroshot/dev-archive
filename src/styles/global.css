@@ -15,6 +15,6 @@
   @apply my-5;
 }
 
-.utterances {
-  @apply mt-8 max-w-full;
+#giscus-container {
+  @apply mt-10;
 }
