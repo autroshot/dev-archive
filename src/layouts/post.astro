@@ -77,7 +77,7 @@ interface Props {
       />
     ) : null
   }
-  <div id="giscus-container"></div>
+  {currentPostData.isDraft ? null : <div id="giscus-container" />}
 
   <script>
     const script = document.createElement('script');
