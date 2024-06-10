@@ -3271,19 +3271,19 @@ preferred-pm@^3.0.3:
     path-exists "^4.0.0"
     which-pm "2.0.0"
 
-prettier-plugin-astro@^0.12.0:
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/prettier-plugin-astro/-/prettier-plugin-astro-0.12.0.tgz#4faf0d0fcc7ca005668917109f399a548473a6fd"
-  integrity sha512-8E+9YQR6/5CPZJs8XsfBw579zrwZkc0Wb7x0fRVm/51JC8Iys4lBw4ecV8fHwpbQnzve86TUa4fJ08BJzqfWnA==
+prettier-plugin-astro@^0.14.0:
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-astro/-/prettier-plugin-astro-0.14.0.tgz#035bb78b7b8a45b4ab7c5b926f73850af9afffb6"
+  integrity sha512-7jRGJsexaRIyUzTk8uzXlP45cw6DQ5Ci4bTe0xCBCcuO1Fff8jJy9oI+kRCQKSdDFTSAArMSg8GpvzlKBtSaZA==
   dependencies:
     "@astrojs/compiler" "^1.5.5"
     prettier "^3.0.0"
     sass-formatter "^0.7.6"
 
-prettier-plugin-tailwindcss@^0.5.4:
-  version "0.5.4"
-  resolved "https://registry.yarnpkg.com/prettier-plugin-tailwindcss/-/prettier-plugin-tailwindcss-0.5.4.tgz#ebfacbcb90e2ca1df671ffe4083e99f81d72040d"
-  integrity sha512-QZzzB1bID6qPsKHTeA9qPo1APmmxfFrA5DD3LQ+vbTmAnY40eJI7t9Q1ocqel2EKMWNPLJqdTDWZj1hKYgqSgg==
+prettier-plugin-tailwindcss@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-tailwindcss/-/prettier-plugin-tailwindcss-0.6.2.tgz#1143ac515b97bc9c04ec2d19a1a1db42b36f198c"
+  integrity sha512-eFefm4cg+1c2B57+H274Qm//CTWBdtQN9ansl0YTP/8TC8x3bugCTQSS/e4FC5Ctl9djhTzsbcMrZ7x2/abIow==
 
 prettier@^3.0.0:
   version "3.0.3"
