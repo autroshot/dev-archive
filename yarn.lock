@@ -605,15 +605,15 @@
     hastscript "^7.2.0"
     unist-util-visit-parents "^5.1.3"
 
-"@fontsource-variable/noto-sans-kr@^5.0.3":
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/@fontsource-variable/noto-sans-kr/-/noto-sans-kr-5.0.3.tgz#50b05e5c1cf6caa89fd2781d484198569a95badf"
-  integrity sha512-Mjd+5Cr728QUjelv7JDAJHHq7LZhLbA9C13jMCDl42zNTpuTnNwpNUjpCxdmvxEXwofa6oaTVihPZgySm4/L5w==
+"@fontsource-variable/noto-sans-kr@^5.0.6":
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/@fontsource-variable/noto-sans-kr/-/noto-sans-kr-5.0.6.tgz#3dce5c576ea403832fc29942a4ab34cc5064d68f"
+  integrity sha512-BaSaI2Bxv0YQupgDYolxMWv8abe/XyxuWkyO0dtwY/yzDWHeToy2qK2vPqp347TTDdUlnj/Qs3NsPTfJwEZbiw==
 
-"@fontsource/nanum-gothic@^5.0.10":
-  version "5.0.10"
-  resolved "https://registry.yarnpkg.com/@fontsource/nanum-gothic/-/nanum-gothic-5.0.10.tgz#71c701bb65496e26fb6c0ce7d294aac37d46e214"
-  integrity sha512-piSuxXHp3EtIT9OnaDBjB/4rHSEb0mJfW0l0uAYML1pAatXZNxR4bvoqv5DSgLc7iXbNOafpBS1hKCp9TV0umg==
+"@fontsource/nanum-gothic@^5.0.18":
+  version "5.0.18"
+  resolved "https://registry.yarnpkg.com/@fontsource/nanum-gothic/-/nanum-gothic-5.0.18.tgz#e3ef1140029eb16c2866e43f33ad984c0b8de902"
+  integrity sha512-4ObrWOymBp9v9o3BIGFlS8K89tmXwOUJB12gOxwvAgHFJoKEtoMVnJt6pqUxu9He/df/JE8FxC+G2bImszoZFA==
 
 "@jridgewell/gen-mapping@^0.3.0", "@jridgewell/gen-mapping@^0.3.2":
   version "0.3.3"
