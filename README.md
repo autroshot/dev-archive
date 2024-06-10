@@ -46,5 +46,5 @@ yarn
 yarn astro dev
 ```
 
-이제 http://localhost:4321/에서 실행되는 것을 확인할 수 있습니다.
+이제 `http://localhost:4321/`에서 실행되는 것을 확인할 수 있습니다.
 
