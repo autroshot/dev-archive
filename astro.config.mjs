@@ -13,15 +13,16 @@ pluginFramesTexts.addLocale('ko', {
 
 /** @type {import('astro-expressive-code').AstroExpressiveCodeOptions} */
 const astroExpressiveCodeOptions = {
+  themes: ['github-dark'],
   frames: {
     showCopyToClipboardButton: true,
-    styleOverrides: {
-      tooltipSuccessBackground: 'var(--code-tooltip-success-background)',
-    },
   },
   styleOverrides: {
     codeFontSize: 'var(--code-font-size)',
     codeFontFamily: 'var(--code-font-family)',
+    frames: {
+      tooltipSuccessBackground: 'var(--code-tooltip-success-background)',
+    }
   },
   defaultLocale: 'ko',
 };
