@@ -15,19 +15,19 @@
     "@astrojs/rss": "^3.0.0",
     "@astrojs/sitemap": "^3.0.0",
     "@astrojs/tailwind": "^5.0.0",
-    "@fontsource-variable/noto-sans-kr": "^5.0.3",
-    "@fontsource/nanum-gothic": "^5.0.10",
-    "@tailwindcss/typography": "^0.5.10",
+    "@fontsource-variable/noto-sans-kr": "^5.0.6",
+    "@fontsource/nanum-gothic": "^5.0.18",
+    "@tailwindcss/typography": "^0.5.13",
     "astro": "^3.0.0",
-    "astro-expressive-code": "^0.22.2",
+    "astro-expressive-code": "^0.35.3",
     "astro-icon": "^0.8.1",
-    "rehype-external-links": "^2.1.0",
-    "tailwindcss": "^3.0.24"
+    "rehype-external-links": "^3.0.0",
+    "tailwindcss": "^3.4.4"
   },
   "devDependencies": {
     "@playwright/test": "^1.44.1",
     "@types/node": "^20.14.2",
-    "prettier-plugin-astro": "^0.12.0",
-    "prettier-plugin-tailwindcss": "^0.5.4"
+    "prettier-plugin-astro": "^0.14.0",
+    "prettier-plugin-tailwindcss": "^0.6.2"
   }
 }
