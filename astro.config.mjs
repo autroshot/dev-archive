@@ -4,6 +4,7 @@ import tailwind from '@astrojs/tailwind';
 import astroExpressiveCode, { pluginFramesTexts } from 'astro-expressive-code';
 import { defineConfig } from 'astro/config';
 import rehypeExternalLinks from 'rehype-external-links';
+import { addClassName } from '/src/plugins';
 
 pluginFramesTexts.addLocale('ko', {
   copyButtonCopied: '복사됨!',
@@ -25,6 +26,7 @@ const astroExpressiveCodeOptions = {
     }
   },
   defaultLocale: 'ko',
+  plugins: [addClassName('not-prose')],
 };
 
 // https://astro.build/config
